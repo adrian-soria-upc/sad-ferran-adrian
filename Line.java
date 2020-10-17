@@ -11,6 +11,19 @@ public class Line {
   	stringLine.add(cursor,in);
   	cursor++;
   }
+  public void home(){
+      cursor=0;
+  }
+  public void end(){
+      cursor=stringLine.size();
+  }
+  public void delete(){
+      stringLine.remove(cursor);
+  }
+  public void backspace(){
+      stringLine.remove(cursor-1);
+      cursor--;
+  }
   public String toString() {
         StringBuilder builder = new StringBuilder(stringLine.size());
     	for(Character ch: stringLine){
