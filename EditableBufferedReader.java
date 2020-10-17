@@ -24,29 +24,32 @@ public class EditableBufferedReader extends BufferedReader {
 	}
   }
   public int read() throws IOException{
-  	int command = super.read();
-  	switch(command){
-  		//case 1:
-  		//	line.home();
-  		//	break;
-  		//case 5:
-  		//	line.end();
-  		//	break;
-   		//case 21:
-  		//	line.delete();
-  		//	break;
-  		//case 127:
-  		//	line.backspace();
-  		//	break;
-		default:
-			return command;  	
-  	}
+  	while(true){
+  		int command = super.read();
+  		switch(command){
+  			//case 1:
+  			//	line.home();
+  			//	break;
+  			//case 5:
+  			//	line.end();
+  			//	break;
+   			//case 21:
+  			//	line.delete();
+  			//	break;
+  			//case 127:
+  			//	line.backspace();
+  			//	break;
+  			//27-91-67 derecha
+  			//27-91-68 izquierda
+			default:
+				return command;  	
+  		}
+  	}	
   }
   public String readLine() throws IOException{
   	setRaw();
-  	int input = 0;
-  	while((input=read())!=13){
-  		line.addChar((char)input);
+  	while(read()!=13){
+  		line.addChar((char)read());
   	}
   	unsetRaw();
   	return line.toString();
