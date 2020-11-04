@@ -3,32 +3,68 @@ import java.util.*;
 
 public class Line {
   private int cursor;
-  private ArrayList<Character> stringLine;
+  private StringBuilder stringLine;
+  private boolean insert;
+
   public Line(){
- 	stringLine = new ArrayList<Character>();
+ 	  stringLine = new StringBuilder();
   }
+
   public void addChar(char in){
-  	stringLine.add(cursor,in);
+  	stringLine.insert(cursor,in);
   	cursor++;
   }
+
   public void home(){
-      cursor=0;
+      cursor = 0;
   }
+
   public void end(){
-      cursor=stringLine.size();
+ 	cursor = stringLine.length();
   }
+
   public void delete(){
-      stringLine.remove(cursor);
+	  if(cursor < stringLine.length() - 2){
+	  	stringLine.deleteCharAt(cursor);
+	  }
   }
+
+  public void moveCursor(int move){
+        //move indica amb +1 o -1 si va a l'esquerra o a la dreta
+        //SEGUR QUE HI HA UNA MILLOR SOLUCIÓ
+        if (cursor + move >= 0 && cursor + move <= stringLine.length()){
+            cursor += move;
+        }
+  }
+
   public void backspace(){
-      stringLine.remove(cursor-1);
-      cursor--;
+  	if(cursor != 0){
+	  	stringLine.deleteCharAt(cursor - 1);
+		cursor--;
+	}
   }
+
+  public void insert(){
+    insert = !insert;
+  }
+
+  public String displayString(){
+    StringBuilder displayString = new StringBuilder();
+    displayString.append('\r');
+    displayString.append(stringLine.toString());
+    displayString.append(" ");
+    displayString.append("\033[");
+    displayString.append(1 + stringLine.length() - cursor);
+    displayString.append("D");
+    return displayString.toString();
+  }
+
   public String toString() {
-        StringBuilder builder = new StringBuilder(stringLine.size());
-    	for(Character ch: stringLine){
-        	builder.append(ch);
-    	}
-    	return builder.toString();
+      //StringBuilder builder = new StringBuilder(stringLine.size());
+    	//for(Character ch: stringLine){
+      //  	builder.append(ch);
+    	//}
+    	//return builder.toString();
+    return stringLine.toString();
   }
 }
