@@ -1,3 +1,4 @@
+//Aqui va el Controller
 import java.io.*;
 
 public class EditableBufferedReader extends BufferedReader {
