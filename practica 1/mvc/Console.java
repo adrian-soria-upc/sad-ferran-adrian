@@ -1,4 +1,4 @@
-//Aqui va el que falta implementar
+//Aquí s'implementa el View
 
 public class Console{
   
