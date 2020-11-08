@@ -1,4 +1,3 @@
-//Aqui va el Controller
 import java.io.*;
 
 public class EditableBufferedReader extends BufferedReader {
@@ -32,11 +31,9 @@ public class EditableBufferedReader extends BufferedReader {
   		switch(command){
   			case 1:
   				line.home();
-  				System.out.print(line.displayString());
   				break;
   			case 5:
   				line.end();
-  				System.out.print(line.displayString());
   				break;
   			/*AIXO ÉS PROVISIONAL: el problema es que no sóc capaç de llegir
   			el botó suprimir, simplement s'hauria de canviar el case per el 			suprimir, actualment el suprimir funciona apretant primer el espai
@@ -48,7 +45,6 @@ public class EditableBufferedReader extends BufferedReader {
    				 	break;
   				 case 127:
   				 	line.delete();
-  					System.out.print(line.displayString());
   					break;
   				 default:
   					break;
@@ -60,7 +56,6 @@ public class EditableBufferedReader extends BufferedReader {
   			//	break;
   			case 127:
   				line.backspace();
-  				System.out.print(line.displayString());
   				break;
         //Diria que així hauria d'estar bé!!!
 			case 27:
@@ -69,11 +64,9 @@ public class EditableBufferedReader extends BufferedReader {
 				  switch (super.read()) {
 				    case 67:
 				      line.moveCursor(1);
-				      System.out.print(line.displayString());
 				      break;
 				    case 68:
 				      line.moveCursor(-1);
-				      System.out.print(line.displayString());
 				      break;
 				    }
 				      break;
@@ -91,7 +84,6 @@ public class EditableBufferedReader extends BufferedReader {
 	int inChar = 0;
   	while((inChar = read()) != 13){
   		line.addChar((char) inChar);
-  		System.out.print(line.displayString());
   	}
   	unsetRaw();
   	return line.toString();

@@ -1,4 +1,3 @@
-//Aquí va el Model
 import java.io.*;
 import java.util.*;
 
@@ -6,28 +5,34 @@ public class Line {
   private int cursor;
   private StringBuilder stringLine;
   private boolean insert;
+  private final PropertyChangeSupport propertychange = new PropertyChangeSupport(this);
 
-  public Line(){
+  public Line(PropertyChangeListener listener){
  	  stringLine = new StringBuilder();
+    propertychange.addPropertyChangeListener(listener);
   }
 
   public void addChar(char in){
   	stringLine.insert(cursor,in);
   	cursor++;
+    pcs.firePropertyChange("display", null, getDisplayString());
   }
 
   public void home(){
       cursor = 0;
+      pcs.firePropertyChange("display", null, getDisplayString());
   }
 
   public void end(){
- 	cursor = stringLine.length();
+ 	  cursor = stringLine.length();
+    pcs.firePropertyChange("display", null, getDisplayString());
   }
 
   public void delete(){
 	  if(cursor < stringLine.length() - 2){
 	  	stringLine.deleteCharAt(cursor);
 	  }
+    pcs.firePropertyChange("display", null, getDisplayString());
   }
 
   public void moveCursor(int move){
@@ -36,17 +41,20 @@ public class Line {
         if (cursor + move >= 0 && cursor + move <= stringLine.length()){
             cursor += move;
         }
+      pcs.firePropertyChange("display", null, getDisplayString());
   }
 
   public void backspace(){
   	if(cursor != 0){
 	  	stringLine.deleteCharAt(cursor - 1);
 		cursor--;
-	}
+	 }
+    pcs.firePropertyChange("display", null, getDisplayString());
   }
 
   public void insert(){
     insert = !insert;
+    pcs.firePropertyChange("display", null, getDisplayString());
   }
 
   public String displayString(){
