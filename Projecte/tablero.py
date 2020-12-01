@@ -9,6 +9,7 @@ class Tablero:
     def __init__(self):
         self.M= [[0 for x in range(8)] for _ in range(8)] #Mesa
         self.jugando = True
+        self.jugador = 1 #Jugador 1 azules, jugador 0 rojas
 
         self.M[0][0] = Torre(0, 0, "R")
         self.M[0][1] = Caballo(0, 1, "R")
@@ -47,6 +48,11 @@ class Tablero:
         self.M[7][7] = Torre(7, 7, "A")
 
     def dibujarMesa(self, matriz):
+        print("")
+        if self.jugador == 1:
+            print("\033[;36m"+"                 TURNO JUGADOR AZUL", end = "")
+        else:
+            print("\033[;31m"+"                 TURNO JUGADOR ROJO", end = "")
         print("\033[;37m")
         print("       A     B     C     D     E     F     G     H")
         print("   -------------------------------------------------")
@@ -85,22 +91,57 @@ class Tablero:
         pos.append(ord(inp[1]) - ord("A"))
         pos.append(int(inp[2]) - 1)
         pos.append(ord(inp[3]) - ord("A"))
-        pos = self.controlMovimiento(pos)
-        self.M = self.M[pos[0]][pos[1]].move(self.M, pos)
-        self.dibujarMesa(self.M)
-    
+        self.controlMovimiento(pos)
+        
+    def move(self,pos):
+        mcomp = self.M[pos[0]][pos[1]].valid_move(self.M, pos)
+        if mcomp:
+             self.M[pos[2]][pos[3]] = self.M[pos[0]][pos[1]]
+             self.M[pos[0]][pos[1]] = 0
+             self.jugador = abs(self.jugador - 1)
+             self.dibujarMesa(self.M)
+             self.comprobarPartida()
+        else:
+            print("Movimiento de pieza incorrecto")
+            self.dibujarMesa(self.M)
+            self.turno()
+        
+    def comprobarPartida(self):
+        chain = self.tableroToString(self.M)
+        if chain.count("K") < 2:
+            k = chain.find("K") + 64
+            if k == "A":
+                print("GANA EL JUGADOR ROJO")
+            else:
+                print("GANA EL JUGADOR AZUL")
+            self.jugando = False
+        
+    #Controla si se puede mover en primera instancia la pieza
     def controlMovimiento(self, pos):
         for i in pos:
-            if i > 7 or i < 0:
-                print("Movimiento no válido")
+            if i > 7 or i < 0: #Miramos si estamos dentro del rango de actuación
+                print("Movimiento no válido, fuera de rango")
                 self.turno()
-            elif self.M[pos[2]][pos[3]] == 0:
-                return pos
-            elif self.M[pos[2]][pos[3]].equipo == self.M[pos[0]][pos[1]].equipo:
-                print("Movimiento no válido")
+                return
+        if self.M[pos[0]][pos[1]].equipo == "R" and self.jugador == 1:
+            print("No es tu pieza")
+            self.turno()
+            return
+        elif self.M[pos[0]][pos[1]].equipo == "A" and self.jugador == 0:
+            print("No es tu pieza")
+            self.turno()
+            return
+        elif self.M[pos[2]][pos[3]] == 0: #Miramos si la casilla esta vacía
+            self.move(pos)
+            return
+        elif self.M[pos[2]][pos[3]].equipo == self.M[pos[0]][pos[1]].equipo: #Miramos si la pieza de destino no es de nuestro equipo
+                print("Movimiento no válido, es tu pieza")
                 self.turno()
-        return pos
-            
+                return
+        else:
+            self.move(pos)
+            return    
+
     #Función que pasa de una matriz, a una string para enviar
     def tableroToString(self, mesa):
         piezas = ""
