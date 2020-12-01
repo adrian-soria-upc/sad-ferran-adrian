@@ -1,5 +1,5 @@
 import socket, sys, threading
-import tablero
+from tablero import Tablero
 #control-z para salir
 #ejecutar codigo: python3 server.py 1234
 
@@ -22,7 +22,7 @@ def client(s):
 							u.send(line.encode("UTF-8"))
 							turno=turno+1
 							u.send(tablero.actualizartablero(turno, color).encode("UTF-8"))
-						else: s.send("Comanda erronea\n")
+						else: s.send("Comanda erronea\n".encode("UTF-8"))
 							
 	s.close()
 	with lock:
@@ -30,6 +30,7 @@ def client(s):
 
 lock = threading.Lock()
 users = {}
+tablero = Tablero()
 
 serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serv.bind(('', int(sys.argv[1])))

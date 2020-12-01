@@ -55,7 +55,7 @@ class Tablero():
             mesa += "\033[;31m"+"                 TURNO JUGADOR ROJO" + "\n"
         mesa += "\033[;37m" + "       A     B     C     D     E     F     G     H" + "\n" + "   -------------------------------------------------" + "\n"
         for i in range(len(matriz)):
-            mesa += str(i + 1) + "| " + '[| '
+            mesa += str(i + 1) + "| " + '[ | '
             for j in range(len(matriz[i])):
                 if matriz[i][j] == 0:
                     mesa += "    " + "| "
@@ -75,7 +75,7 @@ class Tablero():
     			return "\nganador rojo\n"
     		else:
     			return "\nganador azul\n"
-    def myTurn(turno, color):
+    def myTurn(self, turno, color):
     	if ((turno % 2 != 0) & (color == 'rojo')): #truno blancas (IMPAR)
     		return True
     	elif ((turno % 2 == 0) & (color == 'azul')): #turno negras (PAR)
@@ -85,11 +85,14 @@ class Tablero():
      
     def comandocorrecto(self, turno, color, inp):
         pos = []
+        inp = inp.upper()
+              	
         #Servidor procesa jugada
-        pos.append(int(inp[0]) - 1)
+        pos.append(ord(inp[0]) - ord("1"))
         pos.append(ord(inp[1]) - ord("A"))
-        pos.append(int(inp[2]) - 1)
+        pos.append(ord(inp[2]) - ord("1"))
         pos.append(ord(inp[3]) - ord("A"))
+  
         return self.controlMovimiento(pos, color)
     
     def controlMovimiento(self, pos, color):
