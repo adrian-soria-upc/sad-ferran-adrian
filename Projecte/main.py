@@ -2,7 +2,9 @@ from tablero import Tablero
 
 if __name__ == "__main__":
     mesa = Tablero()
-    mesa.dibujarMesa(mesa.M)
+    ferran = mesa.dibujarMesaString(mesa.M)
+    print(ferran)
+    print(len(ferran))
     
-    while mesa.jugando == True:
-        mesa.turno()
+    # while mesa.jugando == True:
+    #     mesa.turno()
