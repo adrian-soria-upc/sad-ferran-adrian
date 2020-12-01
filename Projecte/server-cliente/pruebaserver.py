@@ -1,6 +1,6 @@
 import socket, sys, threading
 import tablero
-#control-d para salir
+#control-z para salir
 #ejecutar codigo: python3 server.py 1234
 
 def client(s):
@@ -11,7 +11,7 @@ def client(s):
 	turno = 0
 	with lock:
 		users[nick] = s
-		s.send(("Bienvenidos...normas...teclas...rojo representa blancas, azul representa negras. El color de tus piezas es: " + color + "\n").encode("UTF-8"))
+		s.send(("Bienvenidos...normas...teclas...azul representa blancas, rojo representa negras. El color de tus piezas es: " + color + "\n").encode("UTF-8"))
 		s.send(tablero.actualizartablero(turno, color).encode("UTF-8"))
 	for line in sin:
 		if tablero.myTurn(turno, color):
@@ -22,6 +22,7 @@ def client(s):
 							u.send(line.encode("UTF-8"))
 							turno=turno+1
 							u.send(tablero.actualizartablero(turno, color).encode("UTF-8"))
+						else: s.send("Comanda erronea\n")
 							
 	s.close()
 	with lock:

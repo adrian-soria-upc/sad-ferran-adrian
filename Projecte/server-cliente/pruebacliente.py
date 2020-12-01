@@ -1,5 +1,5 @@
 import socket, sys, threading, io
-#ejecutar codigo: python3 client.py localhost 1234 usuario
+#ejecutar codigo: python3 client.py localhost 1234 usuario color
 
 BLUE = '\033[34m'
 RED = '\033[31m'

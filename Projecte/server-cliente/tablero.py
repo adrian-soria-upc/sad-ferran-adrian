@@ -4,14 +4,14 @@ def actualizartablero(turno, color):
 	elif turno<4:
 		return "jugada\n"
 	else:#esta mal
-		if color=="rojo":
+		if color=="azul":
 			return "\nganador rojo\n"
 		else:
 			return "\nganador azul\n"
 def myTurn(turno, color):
-	if ((turno % 2 != 0) & (color == 'azul')): #truno negras (IMPAR)
+	if ((turno % 2 != 0) & (color == 'rojo')): #truno blancas (IMPAR)
 		return True
-	elif ((turno % 2 == 0) & (color == 'rojo')): #turno blancas (PAR)
+	elif ((turno % 2 == 0) & (color == 'azul')): #turno negras (PAR)
 		return True
 	else:	
 		return False	
