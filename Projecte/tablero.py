@@ -83,25 +83,24 @@ class Tablero():
     	else:	
     		return False	
      
-    def comandocorrecto(self, turno, color, inp):
-        pos = []
-        inp = inp.upper()
-              	
+    def comandocorrecto(self, turno, color, line):
+        pos = [] 
+        inp = line
+        inp = inp.upper()      	
         #Servidor procesa jugada
-        pos.append(ord(inp[0]) - ord("1"))
-        pos.append(ord(inp[1]) - ord("A"))
-        pos.append(ord(inp[2]) - ord("1"))
-        pos.append(ord(inp[3]) - ord("A"))
-  
+        pos.append(ord(inp[len(inp)-5]) - ord("1"))
+        pos.append(ord(inp[len(inp)-4]) - ord("A"))
+        pos.append(ord(inp[len(inp)-3]) - ord("1"))
+        pos.append(ord(inp[len(inp)-2]) - ord("A"))
         return self.controlMovimiento(pos, color)
     
     def controlMovimiento(self, pos, color):
             for i in pos:
                 if i > 7 or i < 0: #Miramos si estamos dentro del rango de actuación
                     return False
-            if self.M[pos[0]][pos[1]].equipo == "R" and color == "rojo":
+            if self.M[pos[0]][pos[1]].equipo == "A" and color == "rojo":
                 return False
-            elif self.M[pos[0]][pos[1]].equipo == "A" and color == "azul":
+            elif self.M[pos[0]][pos[1]].equipo == "R" and color == "azul":
                 return False
             elif self.M[pos[2]][pos[3]] == 0: #Miramos si la casilla esta vacía
                 if self.move(pos):
