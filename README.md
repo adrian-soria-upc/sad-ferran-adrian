@@ -2,3 +2,4 @@
 Estic fent proves
 okey
 no m'ho crec
+doncs si!
