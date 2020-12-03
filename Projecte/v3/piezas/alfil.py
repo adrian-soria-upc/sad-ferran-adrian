@@ -36,35 +36,6 @@ class Alfil(Pieza):
         
         return mpos
     
-    # def getAmenazaAzul(self, mesa):
-    #     amenaza = []
-    #     i = 1
-    #     #Arriba- Izquierda
-    #     while self.fila - i >= 0 and self.col - i >= 0 and mesa[self.fila - i][self.col - i] == 0:
-    #         pos = [self.fila - i, self.col - i]
-    #         amenaza.append(pos)
-    #         i+=1
-    #     #Abajo - Izquierda
-    #     i = 1
-    #     while self.fila + i <= 7 and self.col - i >= 0 and mesa[self.fila + i][self.col - i] == 0:
-    #         pos = [self.fila + i, self.col]
-    #         amenaza.append(pos)
-    #         i+=1
-    #     #Arriba - Derecha
-    #     i = 1
-    #     while self.col + i <= 7 and self.fila - i >= 0 and mesa[self.fila - i][self.col + i] == 0:
-    #         pos = [self.fila - i, self.col + i]
-    #         amenaza.append(pos)
-    #         i+=1
-    #     #Abajo - Derecha
-    #     i = 1
-    #     while self.col + i <= 7 and self.fila + i <= 7 and mesa[self.fila + i][self.col + i] == 0:
-    #         pos = [self.fila + i, self.col + i]
-    #         amenaza.append(pos)
-    #         i+=1
-            
-    #     return amenaza
-    
     def getAmenazaRoja(self, mesa):
         return self.getAmenazaAzul(mesa)
     

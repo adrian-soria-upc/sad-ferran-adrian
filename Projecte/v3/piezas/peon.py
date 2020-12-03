@@ -39,37 +39,6 @@ class Peon(Pieza):
             elif mesa[pos[2]][pos[3]] == 0:
                 mpos = False
                 return mpos
-        
-    
-    # def getAmenazaAzul(self, mesa):
-    #     amenaza = []
-    #     if self.col == 0:
-    #         pos = [self.fila - 1, self.col + 1]
-    #         amenaza.append(pos)
-    #     elif self.col == 7:
-    #         pos = [self.fila - 1, self.col -1]
-    #         amenaza.append(pos)
-    #     else:
-    #         pos = [self.fila - 1, self.col + 1]
-    #         amenaza.append(pos)
-    #         pos = [self.fila - 1, self.col -1]
-    #         amenaza.append(pos)
-    #     return amenaza
-    
-    # def getAmenazaRoja(self, mesa):
-    #     amenaza = []
-    #     if self.col == 0:
-    #         pos = [self.fila + 1, self.col + 1]
-    #         amenaza.append(pos)
-    #     elif self.col == 7:
-    #         pos = [self.fila + 1, self.col -1]
-    #         amenaza.append(pos)
-    #     else:
-    #         pos = [self.fila + 1, self.col + 1]
-    #         amenaza.append(pos)
-    #         pos = [self.fila + 1, self.col -1]
-    #         amenaza.append(pos)
-    #     return amenaza
     
     def getPieza(self):
         if self.equipo == "R":

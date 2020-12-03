@@ -15,6 +15,7 @@ def client(s):
 			s.send(tablero.dibujarMesaStringAzul(tablero.M).encode("UTF-8"))
 		else:
 			s.send(tablero.dibujarMesaStringRojo(tablero.M).encode("UTF-8"))
+
 	for line in sin:
 		if ((tablero.jugador == color) & (tablero.comprobarPartida())):
 			with lock:
@@ -28,14 +29,11 @@ def client(s):
 							else:
 								u.send(tablero.dibujarMesaStringAzul(tablero.M).encode("UTF-8"))
 								s.send(tablero.dibujarMesaStringRojo(tablero.M).encode("UTF-8"))
-						else:
-							if tablero.surrender:
+							if tablero.comprobarPartida() == False:
 								u.send(("EL GANADOR ES EL JUGADOR " + tablero.jugador.upper() + "\n").encode("UTF-8"))
 								s.send(("EL GANADOR ES EL JUGADOR " + tablero.jugador.upper() + "\n").encode("UTF-8"))
-							else:
-								s.send("Comanda erronea\n".encode("UTF-8"))
-		elif tablero.comprobarPartida() == False:
-			s.send(("EL GANADOR ES EL JUGADOR " + tablero.jugador.upper() + "\n").encode("UTF-8"))			
+						else:
+							s.send("Comanda erronea\n".encode("UTF-8"))		
 	s.close()
 	with lock:
 		del users[nick]

@@ -30,38 +30,6 @@ class Torre(Pieza):
                     mpos = False
         return mpos
     
-    # def getAmenazaAzul(self, mesa):
-    #     amenaza = []
-    #     i = 1
-    #     #Arriba
-    #     while self.fila - i >= 0 and mesa[self.fila - i][self.col] == 0:
-    #         pos = [self.fila - i, self.col]
-    #         amenaza.append(pos)
-    #         i+=1
-    #     #Abajo
-    #     i = 1
-    #     while self.fila + i <= 7 and mesa[self.fila + i][self.col] == 0:
-    #         pos = [self.fila + i, self.col]
-    #         amenaza.append(pos)
-    #         i+=1
-    #     #Izquierda
-    #     i = 1
-    #     while self.col - i >= 0 and mesa[self.fila][self.col - i] == 0:
-    #         pos = [self.fila, self.col - i]
-    #         amenaza.append(pos)
-    #         i+=1
-    #     #Derecha
-    #     i = 1
-    #     while self.col + i <= 7 and mesa[self.fila][self.col + i] == 0:
-    #         pos = [self.fila, self.col + i]
-    #         amenaza.append(pos)
-    #         i+=1
-            
-    #     return amenaza
-    
-    # def getAmenazaRoja(self, mesa):
-    #     return self.getAmenazaAzul(mesa)
-    
     def getPieza(self):
         if self.equipo == "R":
             return "\033[;31m"+ "T" + "\033[;37m"

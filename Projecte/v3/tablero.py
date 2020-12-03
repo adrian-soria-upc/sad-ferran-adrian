@@ -9,7 +9,6 @@ class Tablero():
     def __init__(self):
         self.M= [[0 for x in range(8)] for _ in range(8)] #Mesa
         self.jugador = "azul"
-        self.surrender = False
     
         self.M[0][0] = Torre(0, 0, "R")
         self.M[0][1] = Caballo(0, 1, "R")
@@ -50,9 +49,9 @@ class Tablero():
     def dibujarMesaStringAzul(self, matriz):
         mesa = ""
         if self.jugador == "azul":
-            mesa += "\033[;36m"+"                   TURNO JUGADOR AZUL" + "\n"
+            mesa += "\n" + "\033[;36m"+"                   TURNO JUGADOR AZUL" + "\n"
         else:
-            mesa += "\033[;31m"+"                   TURNO JUGADOR ROJO" + "\n"
+            mesa += "\n" + "\033[;31m"+"                   TURNO JUGADOR ROJO" + "\n"
         mesa += "\033[;37m" + "        A     B     C     D     E     F     G     H" + "\n" + "   ---------------------------------------------------" + "\n"
         for i in range(len(matriz)):
             mesa += str(i + 1) + "| " + '[ | '
@@ -62,15 +61,15 @@ class Tablero():
                 else:
                     mesa += " " + matriz[i][j].getPieza() + "  | " 
             mesa += ']' + "\n" + "   ---------------------------------------------------" + "\n"
-        mesa += "        A     B     C     D     E     F     G     H" + "\n"
+        mesa += "        A     B     C     D     E     F     G     H" + "\n" + "\n"
         return mesa
 
     def dibujarMesaStringRojo(self, matriz):
         mesa = ""
         if self.jugador == "azul":
-            mesa += "\033[;36m"+"                   TURNO JUGADOR AZUL" + "\n"
+            mesa += "\n" + "\033[;36m"+"                   TURNO JUGADOR AZUL" + "\n"
         else:
-            mesa += "\033[;31m"+"                   TURNO JUGADOR ROJO" + "\n"
+            mesa += "\n" + "\033[;31m"+"                   TURNO JUGADOR ROJO" + "\n"
         mesa += "\033[;37m" + "        H     G     F     E     D     C     B     A" + "\n" + "   ---------------------------------------------------" + "\n"
         for i in range(len(matriz)):
             mesa += str(8 - i) + "| " + '[ | '
@@ -80,7 +79,7 @@ class Tablero():
                 else:
                     mesa += " " + matriz[7 - i][7 - j].getPieza() + "  | " 
             mesa += ']' + "\n" + "   ---------------------------------------------------" + "\n"
-        mesa += "        H     G     F     E     D     C     B     A" + "\n"
+        mesa += "        H     G     F     E     D     C     B     A" + "\n" + "\n"
         return mesa
                
     def comandocorrecto(self,color, line):
@@ -88,14 +87,8 @@ class Tablero():
         inp = line
         inp = inp.upper()
         if inp[len(inp) - 3] == "F" and inp[len(inp) - 2] == "F":
-            chain = self.tableroToString(self.M)
             self.tumbarRey(color)
-            return self.comprobarPartida()
-        elif inp[len(inp) - 5] == "F" and inp[len(inp) - 4] == "F":
-            chain = self.tableroToString(self.M)
-            self.tumbarRey(color)
-            return self.comprobarPartida()
-        #Servidor procesa jugada
+            return True
         pos.append(ord(inp[len(inp)-5]) - ord("1"))
         pos.append(ord(inp[len(inp)-4]) - ord("A"))
         pos.append(ord(inp[len(inp)-3]) - ord("1"))
@@ -112,13 +105,14 @@ class Tablero():
                 if self.M[i][j] != 0:
                     if self.M[i][j].tipo == "K" and self.M[i][j].equipo == color:
                         self.M[i][j] = 0
-        self.surrender = True
 
     def controlMovimiento(self, pos, color):
             for i in pos:
                 if i > 7 or i < 0: #Miramos si estamos dentro del rango de actuación
                     return False
-            if self.M[pos[0]][pos[1]].equipo == "A" and color == "rojo":
+            if self.M[pos[0]][pos[1]] == 0:
+                return False
+            elif self.M[pos[0]][pos[1]].equipo == "A" and color == "rojo":
                 return False
             elif self.M[pos[0]][pos[1]].equipo == "R" and color == "azul":
                 return False
@@ -130,7 +124,6 @@ class Tablero():
                 return self.move(pos)
     
     def move(self,pos):
-        self.surrender = False
         mcomp = self.M[pos[0]][pos[1]].valid_move(self.M, pos)
         if mcomp:
              self.M[pos[2]][pos[3]] = self.M[pos[0]][pos[1]]
@@ -144,10 +137,17 @@ class Tablero():
             return False
     
     def comprobarPartida(self):
-        chain = self.tableroToString(self.M)
-        if chain.count("K") < 2:
-            k = chain.find("K") + 64
-            if k == "A":
+        numK = 0
+        pos = []
+        for i in range(len(self.M)):
+            for j in range(len(self.M[i])):
+                if self.M[i][j] != 0:
+                    if self.M[i][j].tipo == "K":
+                        numK += 1
+                        pos.append(i)
+                        pos.append(j)
+        if numK < 2:
+            if self.M[pos[0]][pos[1]].equipo == "R":
                 self.jugador = "rojo"
                 return False
             else:
@@ -155,18 +155,3 @@ class Tablero():
                 return False
         else:
             return True
-    
-    #Función que convierte la String en tablero
-    def tableroToString(self, mesa):
-            piezas = ""
-            equipo = ""
-            for i in range(len(mesa)):
-                for j in range(len(mesa[i])):
-                    if mesa[i][j] != 0:
-                        piezas = piezas + mesa[i][j].tipo
-                        equipo = equipo + mesa[i][j].equipo
-                    else:
-                        piezas = piezas + "0"
-                        equipo = equipo + "N"
-            chain = piezas + equipo
-            return chain	
