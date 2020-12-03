@@ -1,29 +1,29 @@
 # v2
-## Cosas que faltan
-- màxim 2 jugadors --> ***Ferran***
+## Coses que falten
+- màxim 2 jugadors. --> ***Ferran***
 
-- només posar azul o rojo, en miniuscula --> ***Ferran***
+- només posar azul o rojo, en miniuscula. --> ***Ferran***
 
 - *EXTRA:* 
 
-    - Convertir-ho a classe
+    - Convertir-ho a classe.
 
     - Model - View - Controller
 
 - *ADDICIONAL:*
 
-    - Enroque --> ***Adri***
+    - Enroque. --> ***Adri***
 
-    - Amenaces
+    - Amenaces.
 
 ## Notes de canvi
-- S'ha adaptat la funció *dibujarMesa* per millor visualització
+- S'ha adaptat la funció *dibujarMesa* per millor visualització.
 
-- S'ha arreglat un problema al moure la peça *QUEEN*
+- S'ha arreglat un problema al moure la peça *QUEEN*.
 
-- Cada jugador veu desde la seva perspectiva (la taula es gira)
+- Cada jugador veu desde la seva perspectiva (la taula es gira).
 
-- Si se envia "ff" o "ffff" el jugador es rendeix
+- Si se envia "ff" o "ffff" el jugador es rendeix, també funciona en majúscules.
 
 ## Errors detectats
-- S'ha de fer un intro quan es menja el rey --> ***Ferran***
+- S'ha de fer un intro quan es menja el rey. --> ***Ferran***
