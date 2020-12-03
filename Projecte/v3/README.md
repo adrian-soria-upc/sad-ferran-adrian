@@ -1,4 +1,4 @@
-# v2
+# v3
 ## Coses que falten
 - màxim 2 jugadors. --> ***Ferran***
 
@@ -18,6 +18,8 @@
 
 ## Notes de canvi
 - S'ha adaptat la funció *dibujarMesa* per millor visualització.
+
+    - S'han fet dues funcions, *dibujarMesaAzul* i *dibujarMesaRojo*, una per cada jugador.
 
 - S'ha arreglat un problema al moure la peça *QUEEN*.
 
