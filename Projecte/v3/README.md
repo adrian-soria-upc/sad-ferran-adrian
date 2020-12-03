@@ -1,9 +1,5 @@
 # v2
 ## Cosas que faltan
-- No haver de fer un intro per la derrota -> ***Ferran***
-
-- model-view-controler --> ***Final***
-
 - màxim 2 jugadors --> ***Ferran***
 
 - només posar azul o rojo, en miniuscula --> ***Ferran***
@@ -17,14 +13,17 @@
 - *ADDICIONAL:*
 
     - Enroque --> ***Adri***
-     
+
     - Amenaces
 
-## Notas de cambio
-- Se ha adaptado la funcion dibujarMesa para que quede más bonita
+## Notes de canvi
+- S'ha adaptat la funció *dibujarMesa* per millor visualització
 
-- Se ha arreglado un problema con mover la pieza QUEEN
+- S'ha arreglat un problema al moure la peça *QUEEN*
 
-- A cada jugador desde su perspectiva
+- Cada jugador veu desde la seva perspectiva (la taula es gira)
 
-- Si se envia "ff" o "ffff" se rinde el jugador
+- Si se envia "ff" o "ffff" el jugador es rendeix
+
+## Errors detectats
+- S'ha de fer un intro quan es menja el rey --> ***Ferran***
