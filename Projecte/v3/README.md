@@ -1,20 +1,24 @@
 # v2
 ## Cosas que faltan
-Falta:
+- No haver de fer un intro per la derrota -> ***Ferran***
 
-- No haver de fer un intro per la derrota (Ferran)
+- model-view-controler --> ***Final***
 
-- model-view-controler(final)
+- màxim 2 jugadors --> ***Ferran***
 
-- màxim 2 jugadors(Ferran)
+- només posar azul o rojo, en miniuscula --> ***Ferran***
 
-- canviar punts de vista segons jugador(Adri)
+- *EXTRA:* 
 
-- només posar azul o rojo (Ferran)
+    - Convertir-ho a classe
 
-- EXTRA: convertir-ho a classe(final)
+    - Model - View - Controller
 
-- ADDICIONAL: Enroque(Adri), Amenaces(Final)
+- *ADDICIONAL:*
+
+    - Enroque --> ***Adri***
+     
+    - Amenaces
 
 ## Notas de cambio
 - Se ha adaptado la funcion dibujarMesa para que quede más bonita
