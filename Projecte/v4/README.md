@@ -12,6 +12,8 @@
     - Fer que no s'inicii fins que entrin 2
 
     - Optimitzar dibujar
+    
+    - Online si es pot
 
 ## Apunts
 - Pasar *color* a 1 i 0
