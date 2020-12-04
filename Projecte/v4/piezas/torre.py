@@ -29,9 +29,3 @@ class Torre(Pieza):
                 if i < 0 and mesa[pos[0]][pos[1] + i] != 0:
                     mpos = False
         return mpos
-    
-    #def getPieza(self):
-    #   if self.equipo == "R":
-    #        return "\033[;31m"+ "T" + "\033[;37m"
-    #    else:
-    #        return "\033[;36m"+ "T" + "\033[;37m"

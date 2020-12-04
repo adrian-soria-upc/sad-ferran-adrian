@@ -5,7 +5,7 @@
 
 - *EXTRA:* 
 
-    - Convertir-ho a classe.
+    - Convertir-ho a classe, client-servidor.
 
     - Només posar azul o rojo, en miniuscula.
 
@@ -15,8 +15,8 @@
     
     - Online si es pot
 
-## Apunts
-- Pasar *color* a 1 i 0
+## Errores
+- Quan et rendeixes, el guanyador s'imprimeix malament.
 
 
 

@@ -1,5 +1,6 @@
 import socket, sys, threading
 from tablero import Tablero
+
 #control-z para salir
 #ejecutar codigo: python3 server.py 1234
 
@@ -14,7 +15,7 @@ def client(s):
 		#while (color!="azul") & (color!="rojo"):
 		#	s.send("Color erroneo, escrive azul o rojo: ".encode("UTF-8"))
 		#	color = sin.readline().rstrip()
-		if color=="azul": 
+		if color == "azul": 
 			p = 1
 		else: 
 			p = 0

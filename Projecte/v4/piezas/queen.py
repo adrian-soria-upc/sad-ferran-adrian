@@ -54,9 +54,3 @@ class Queen(Pieza):
         else: 
             mpos = False
         return mpos
-   
-    #def getPieza(self):
-    #    if self.equipo == "R":
-    #        return "\033[;31m"+ "Q" + "\033[;37m"
-    #    else:
-    #        return "\033[;36m"+ "Q" + "\033[;37m"
