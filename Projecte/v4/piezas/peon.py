@@ -15,33 +15,35 @@ class Peon(Pieza):
                     if self.equipo == "A" and mesa[pos[0] - 1][pos[1]] == 0:
                         if pos[3] == pos[1]:
                             mpos = True
-                            return mpos
+                            #return mpos
                     elif self.equipo == "R" and mesa[pos[0] + 1][pos[1]] == 0:
                         if pos[3] == pos[1]:
                             mpos = True
-                            return mpos
+                            #return mpos
                     else:
                         mpos = False
-                        return mpos
+                        #return mpos
             else:
                 mpos = False
-                return mpos
+                #return mpos
         elif self.equipo == "R" and f <= 0: #Las rojas solo se pueden mover hacia abajo (filas positivas)
             mpos = False
-            return mpos
+            #return mpos
         elif self.equipo == "A" and f >= 0: #Las azules solo se pueden mover hacia arriba (filas negativas)
             mpos = False
-            return mpos
+            #return mpos
         else:
             if pos[3] == pos[1]:
                 mpos = True
-                return mpos
+                #return mpos
             elif mesa[pos[2]][pos[3]] == 0:
                 mpos = False
-                return mpos
+                #return mpos
+        print("PEON")
+        return mpos
     
-    def getPieza(self):
-        if self.equipo == "R":
-            return "\033[;31m"+ "P" + "\033[;37m"
-        else:
-            return "\033[;36m"+ "P" + "\033[;37m"
+    #def getPieza(self):
+    #    if self.equipo == "R":
+    #        return "\033[;31m"+ "P" + "\033[;37m"
+    #    else:
+    #        return "\033[;36m"+ "P" + "\033[;37m"

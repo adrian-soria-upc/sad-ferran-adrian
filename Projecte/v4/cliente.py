@@ -1,4 +1,4 @@
-import socket, sys, threading, io
+import socket, sys, threading
 #ejecutar codigo: python3 client.py localhost 1234 usuario color
 
 BLUE = '\033[34m'
@@ -6,9 +6,13 @@ RED = '\033[31m'
 DEFAULT = '\033[0m'
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((sys.argv[1], int(sys.argv[2])))
 nick = sys.argv[3]
 color = sys.argv[4]
+#Aixo funciona pero es preferible que es faci al servidor
+#while color != "azul" and color != "rojo":
+#	print("Color erroneo, escrive azul o rojo: ")
+#	color=sys.stdin.readline().rstrip()
+s.connect((sys.argv[1], int(sys.argv[2])))	
 
 def input():
 	out = open(s.fileno(), 'w', 1)
@@ -16,7 +20,7 @@ def input():
 	out.write(f'{color}\n')
 	for line in sys.stdin:
 		if color == 'rojo':
-			out.write(f"{RED}{nick}>{DEFAULT} {line}")
+			out.write(f"{RED}{nick}>{DEFAULT} {line}") 
 		elif color == 'azul':
 			out.write(f"{BLUE}{nick}>{DEFAULT} {line}")
 	s.shutdown(socket.SHUT_WR)
@@ -26,4 +30,4 @@ def output():
 	inp = open(s.fileno(), 'r')
 	for line in inp:
 		sys.stdout.write(line)
-threading.Thread(target = output).start()		
+threading.Thread(target = output).start()

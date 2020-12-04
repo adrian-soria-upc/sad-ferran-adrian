@@ -31,18 +31,13 @@ class Alfil(Pieza):
                     if i!=0 and mesa[pos[0] + i][pos[1] + i] != 0:
                         mpos = False
         else:
-            print("DIAGONALES NO IGUALES")
-            mpos = False
-        
+            mpos = False 
         return mpos
     
-    def getAmenazaRoja(self, mesa):
-        return self.getAmenazaAzul(mesa)
-    
-    def getPieza(self):
-        if self.equipo == "R":
-            return "\033[;31m"+ "A" + "\033[;37m"
-        else:
-            return "\033[;36m"+ "A" + "\033[;37m"
+    #def getPieza(self):
+    #    if self.equipo == "R":
+    #        return "\033[;31m"+ "A" + "\033[;37m"
+    #    else:
+    #        return "\033[;36m"+ "A" + "\033[;37m"
 
 
