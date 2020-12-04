@@ -8,12 +8,12 @@ from piezas.queen import Queen
 class Tablero():
     def __init__(self):
         self.M= [[0 for x in range(8)] for _ in range(8)] #Mesa
-        self.jugador = "azul"
+        self.jugador = 1#azul=1, rojo=0
     
         self.M[0][0] = Torre(0, 0, "R")
         self.M[0][1] = Caballo(0, 1, "R")
         self.M[0][2] = Alfil(0, 2, "R")
-        self.M[0][3] = Queen(0, 3, "R")
+        self.M[0][3] = Queen(0, 3, "A")
         self.M[0][4] = King(0, 4, "R")
         self.M[0][5] = Alfil(0, 5, "R")
         self.M[0][6] = Caballo(0, 6, "R")
@@ -48,7 +48,7 @@ class Tablero():
     
     def dibujarMesaStringAzul(self, matriz):
         mesa = ""
-        if self.jugador == "azul":
+        if self.jugador == 1:
             mesa += "\n" + "\033[;36m"+"                   TURNO JUGADOR AZUL" + "\n"
         else:
             mesa += "\n" + "\033[;31m"+"                   TURNO JUGADOR ROJO" + "\n"
@@ -66,7 +66,7 @@ class Tablero():
 
     def dibujarMesaStringRojo(self, matriz):
         mesa = ""
-        if self.jugador == "azul":
+        if self.jugador == 1:
             mesa += "\n" + "\033[;36m"+"                   TURNO JUGADOR AZUL" + "\n"
         else:
             mesa += "\n" + "\033[;31m"+"                   TURNO JUGADOR ROJO" + "\n"
@@ -81,7 +81,12 @@ class Tablero():
             mesa += ']' + "\n" + "   ---------------------------------------------------" + "\n"
         mesa += "        H     G     F     E     D     C     B     A" + "\n" + "\n"
         return mesa
-               
+    
+    def dibujarMesa(self, m, color):
+    	if color == 1:
+    		return self.dibujarMesaStringAzul(m)
+    	else:
+    		return self.dibujarMesaStringRojo(m)      
     def comandocorrecto(self,color, line):
         pos = [] 
         inp = line
@@ -96,7 +101,7 @@ class Tablero():
         return self.controlMovimiento(pos, color)
     
     def tumbarRey(self, color):
-        if color == "azul":
+        if color == 1:
             color = "A"
         else:
             color = "R"
@@ -112,9 +117,9 @@ class Tablero():
                     return False
             if self.M[pos[0]][pos[1]] == 0:
                 return False
-            elif self.M[pos[0]][pos[1]].equipo == "A" and color == "rojo":
+            elif self.M[pos[0]][pos[1]].equipo == "A" and color == 0:
                 return False
-            elif self.M[pos[0]][pos[1]].equipo == "R" and color == "azul":
+            elif self.M[pos[0]][pos[1]].equipo == "R" and color == 1:
                 return False
             elif self.M[pos[2]][pos[3]] == 0: #Miramos si la casilla esta vacía
                 return self.move(pos)
@@ -128,10 +133,7 @@ class Tablero():
         if mcomp:
              self.M[pos[2]][pos[3]] = self.M[pos[0]][pos[1]]
              self.M[pos[0]][pos[1]] = 0
-             if self.jugador == "azul":
-             	self.jugador = "rojo"
-             else: 
-                self.jugador = "azul"
+             self.jugador = abs(self.jugador-1)
              return True 
         else:
             return False
@@ -148,10 +150,10 @@ class Tablero():
                         pos.append(j)
         if numK < 2:
             if self.M[pos[0]][pos[1]].equipo == "R":
-                self.jugador = "rojo"
+                self.jugador = 0
                 return False
             else:
-                self.jugador = "azul"
+                self.jugador = 1
                 return False
         else:
             return True

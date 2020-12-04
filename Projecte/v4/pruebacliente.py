@@ -6,9 +6,13 @@ RED = '\033[31m'
 DEFAULT = '\033[0m'
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((sys.argv[1], int(sys.argv[2])))
 nick = sys.argv[3]
 color = sys.argv[4]
+
+#while (color!="azul") & (color!="rojo"):
+#	print("Color erroneo, escrive azul o rojo: ")
+#	color=sys.stdin.readline().rstrip()
+s.connect((sys.argv[1], int(sys.argv[2])))	
 
 def input():
 	out = open(s.fileno(), 'w', 1)
@@ -26,4 +30,5 @@ def output():
 	inp = open(s.fileno(), 'r')
 	for line in inp:
 		sys.stdout.write(line)
-threading.Thread(target = output).start()		
+threading.Thread(target = output).start()
+
