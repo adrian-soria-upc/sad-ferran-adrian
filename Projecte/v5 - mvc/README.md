@@ -1,8 +1,6 @@
 # v4
 ## Coses que falten
 
-- Model - View - Controller
-
 - *EXTRA:* 
 
     - Optimitzar dibujar
