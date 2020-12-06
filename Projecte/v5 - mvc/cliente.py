@@ -1,5 +1,5 @@
 import socket, sys, threading
-#ejecutar codigo: python3 client.py localhost 1234 usuario color
+#ejecutar codigo: python3 client.py localhost 1234 usuario
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 nick = sys.argv[3]
