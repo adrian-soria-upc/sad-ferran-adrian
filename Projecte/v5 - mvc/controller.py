@@ -9,6 +9,7 @@ def comandoCorrecto(color, line, m):
     pos.append(ord(line[len(line) - 4]) - ord("A"))
     pos.append(ord(line[len(line) - 3]) - ord("1"))
     pos.append(ord(line[len(line) - 2]) - ord("A"))
+    print(pos)
     return controlMovimiento(pos, color, m)
 
 def tumbarRey(color, m):
@@ -25,12 +26,6 @@ def controlMovimiento(pos, color, m):
                 return False
         if m[pos[0]][pos[1]].equipo != color or m[pos[2]][pos[3]].equipo == m[pos[0]][pos[1]].equipo:
             return False
-        #elif m[pos[0]][pos[1]].equipo != color:
-        #    return False
-        #elif m[pos[2]][pos[3]] == 0: #Miramos si la casilla esta vacía
-        #    return move(pos, m)
-        #elif m[pos[2]][pos[3]].equipo == m[pos[0]][pos[1]].equipo: #Miramos si la pieza de destino es de nuestro equipo
-        #    return False
         elif m[pos[0]][pos[1]].valid_move(m, pos):
             return move(pos, m)
         else:

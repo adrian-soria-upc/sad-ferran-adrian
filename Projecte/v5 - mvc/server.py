@@ -51,9 +51,7 @@ def client(s):
 		del users[p]
 
 lock = threading.Lock()
-users = {}
-#users = {azul:{nick1:socket1}
-#        rojo:{nick2:socket2}}
+users = {} #users = {azul:{nick1:socket1},rojo:{nick2:socket2}}
 tablero = Tablero()
 
 serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

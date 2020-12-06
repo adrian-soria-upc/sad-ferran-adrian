@@ -14,6 +14,3 @@ class Caballo(Pieza):
             return True
         else:
             return False
-
-
-

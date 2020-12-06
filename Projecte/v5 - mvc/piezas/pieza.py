@@ -10,7 +10,4 @@ class Pieza:
         if self.equipo == 0:
             return "\033[;31m"+ self.tipo + "\033[;37m"
         else:
-            return "\033[;36m"+ self.tipo + "\033[;37m"
-
-
-        
+            return "\033[;36m"+ self.tipo + "\033[;37m"   

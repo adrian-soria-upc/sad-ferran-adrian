@@ -28,4 +28,6 @@ class Torre(Pieza):
             for i in range(abs(c)):
                 if i != 0 and mesa[pos[0]][pos[1] + i].equipo != "N":
                     mpos = False
+        elif c != 0 and f != 0:
+            mpos = False
         return mpos

@@ -31,5 +31,4 @@ class Peon(Pieza):
                 mpos = True
             elif mesa[pos[2]][pos[3]].equipo == "N":
                 mpos = False
-        return mpos
-    
+        return mpos   
