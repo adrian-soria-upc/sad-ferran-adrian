@@ -7,6 +7,8 @@
 
 - Strings del server al View
 
+- Peon final tablero en Quinn
+
 - Comprobar més errors
 
 - *EXTRA:* 
