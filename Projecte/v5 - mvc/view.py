@@ -1,3 +1,5 @@
+#POSAR RED;BLUE;DEFAULT
+#Posar Strings Server
 def dibujarMesa(m, color, jugador):
     mesa = "\n"
     if jugador == 1:
