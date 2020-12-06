@@ -6,6 +6,7 @@ class Peon(Pieza):
         Pieza.__init__(self, "P", equipo, fila, col)        
         
     def valid_move(self, mesa, pos):
+        print("INTENTO PEON")
         f = pos[2] - pos[0] #Fila final - Fila inicial
         c = pos[3] - pos[1] #Columna final - Columna inicial
         mpos = True

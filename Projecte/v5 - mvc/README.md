@@ -9,9 +9,9 @@
     
     - Online si es pot
 
-## Errores
+## Errors
 
-- A VEGADES EL VERMELL NO S'INICIA
+- A VEGADES EL VERMELL NO S'INICIA --> ***Amb un print al servidor (line 15) no falla. Mirar forma millor.
 
 
 

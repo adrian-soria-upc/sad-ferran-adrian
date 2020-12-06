@@ -1,6 +1,4 @@
-from model import Tablero
 #Mirar de juntar
-
 def dibujarMesaStringAzul(matriz):
     mesa = ""
     mesa += "\033[;37m" + "        A     B     C     D     E     F     G     H" + "\n"

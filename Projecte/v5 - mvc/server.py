@@ -12,6 +12,7 @@ DEFAULT = '\033[0m'
 def client(s):
 	sin = s.makefile('r')
 	nick = sin.readline().rstrip()
+	print(nick + " se ha conectado") #Si fem aixó no falla
 	with lock:
 		if len(users) == 0:
 			p = 1

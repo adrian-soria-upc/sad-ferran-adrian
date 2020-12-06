@@ -1,4 +1,3 @@
-
 def comandocorrecto(color, line, m):
     pos = [] 
     line = line.upper()
