@@ -12,7 +12,7 @@ def client(s):
 	nick = sin.readline().rstrip()
 	print(nick + " se ha conectado") #Si fem aixó no falla
 	with lock:
-		if len(users) == 0:
+		if len(users) == 0: #Optimitzar
 			p = 1
 			color = "azul"
 		else:
@@ -21,14 +21,14 @@ def client(s):
 		users[p] = {}
 		users[p][p] = s
 		s.send(("Bienvenido " + nick + ".\nEn este juego de ajedrez, las piezas azules coresponden a las blancas y las rojas a las negras.\nPara hacer un movimiento debes introducir por ejemplo: 7d6d. Donde '7d' corresponde a las coordenadas de origen de la pieza, y 6d las coordenadas de destino. Si introduces ff te rendiras. El color de tus piezas es: ").encode("UTF-8"))
-		s.send(color.encode("UTF-8"))
+		s.send(color.encode("UTF-8")) #Juntar!!!!!!!!!
 		s.send(view.dibujarMesa(tablero.M, p, tablero.jugador).encode("UTF-8"))
 	for line in sin:
 		if tablero.jugador == p and tablero.comprobarPartida() and len(users) == 2:
 			with lock:
-				u=users[abs(p-1)][abs(p-1)]
+				u=users[abs(p-1)][abs(p-1)] #Mirar
 				if controller.comandoCorrecto(p, line, tablero.M):
-					tablero.jugador = abs(tablero.jugador - 1)
+					tablero.jugador = abs(tablero.jugador - 1)#Mirar
 					if color == "azul":
 						u.send(f"{BLUE}{nick}>{DEFAULT} {line}".encode("UTF-8"))
 					else:
