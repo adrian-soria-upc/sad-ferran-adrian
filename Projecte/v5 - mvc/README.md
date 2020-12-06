@@ -1,15 +1,18 @@
-# v4
+# v5
 ## Coses que falten
 
-- *EXTRA:* 
+- Optimitzar
 
-    - Optimitzar dibujar
+- Comprobar més errors
+
+- *EXTRA:* 
     
     - Online si es pot
 
 ## Errores
 
-- A VEGADES EL VERMELL NO S'IMPRIMEIX
+- A VEGADES EL VERMELL NO S'INICIA
+
 
 
 

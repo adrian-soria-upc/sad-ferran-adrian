@@ -34,22 +34,22 @@ class Queen(Pieza):
         #Arriba
         elif c == 0 and f < 0:
             for i in range(abs(f)):
-                if i < 0 and mesa[pos[0] - i][pos[1]] != 0:
+                if i != 0 and mesa[pos[0] - i][pos[1]] != 0:
                     mpos = False
         #Abajo
         elif c == 0 and f > 0:
             for i in range(abs(f)):
-                if i < 0 and mesa[pos[0] + i][pos[1]] != 0:
+                if i != 0 and mesa[pos[0] + i][pos[1]] != 0:
                     mpos = False
         #Izquierda
         elif c < 0 and f == 0:
             for i in range(abs(c)):
-                if  i < 0 and mesa[pos[0]][pos[1] - i] != 0:
+                if  i != 0 and mesa[pos[0]][pos[1] - i] != 0:
                     mpos = False
         #Derecha
         elif c > 0 and f == 0:
             for i in range(abs(c)):
-                if i < 0 and mesa[pos[0]][pos[1] + i] != 0:
+                if i != 0 and mesa[pos[0]][pos[1] + i] != 0:
                     mpos = False
         else: 
             mpos = False
