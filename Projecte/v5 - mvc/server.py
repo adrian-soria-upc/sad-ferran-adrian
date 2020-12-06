@@ -10,10 +10,9 @@ DEFAULT = '\033[0m'
 def client(s):
 	sin = s.makefile('r')
 	nick = sin.readline().rstrip()
-	print(nick + " se ha conectado") #Si fem aixó no falla
 	with lock:
 		if len(users) == 0: #Optimitzar
-			p = 1
+			p = 1 #Color del client
 			color = "azul"
 		else:
 			p = 0
@@ -26,9 +25,9 @@ def client(s):
 	for line in sin:
 		if tablero.jugador == p and tablero.comprobarPartida() and len(users) == 2:
 			with lock:
-				u=users[abs(p-1)][abs(p-1)] #Mirar
+				u = users[abs(p-1)][abs(p-1)] #Socket enemigo
 				if controller.comandoCorrecto(p, line, tablero.M):
-					#tablero.jugador = abs(tablero.jugador - 1)#Mirar
+					tablero.jugador = abs(tablero.jugador - 1)#Mirar
 					if color == "azul":
 						u.send(f"{BLUE}{nick}>{DEFAULT} {line}".encode("UTF-8"))
 					else:
@@ -54,8 +53,8 @@ tablero = Tablero()
 
 serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serv.bind(('', int(sys.argv[1])))
-serv.listen(2) #Si es passa un argument numéric és el màxim de clients abans de "tombar" nous
+serv.listen() #Si es passa un argument numéric és el màxim de clients abans de "tombar" nous
 
-while len(users) < 1: 
+while len(users) < 2: 
 	s, _ = serv.accept()
 	threading.Thread(target=client, args = (s,)).start()
