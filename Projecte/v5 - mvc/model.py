@@ -34,17 +34,16 @@ class Tablero():
         pos = []
         for i in range(len(self.M)):
             for j in range(len(self.M[i])):
-                if self.M[i][j].equipo != "N":
-                    if self.M[i][j].tipo == "K":
-                        numK += 1
-                        pos.append(i)
-                        pos.append(j)
+                if self.M[i][j].tipo == "K":
+                    numK += 1
+                    pos.append(i)
+                    pos.append(j)
         if numK < 2:
-            if self.M[pos[0]][pos[1]].equipo == "N":
+            if self.M[pos[0]][pos[1]].equipo == 0:
                 self.jugador = 0
-                return False
             else:
                 self.jugador = 1
-                return False
+            return False
         else:
             return True
+#Anadir funciones de server (?)
