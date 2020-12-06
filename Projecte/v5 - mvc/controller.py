@@ -1,5 +1,5 @@
 from piezas.pieza import Pieza
-def comandocorrecto(color, line, m):
+def comandoCorrecto(color, line, m):
     pos = [] 
     line = line.upper()
     if line[len(line) - 3] == "F" and line[len(line) - 2] == "F":
@@ -23,7 +23,7 @@ def controlMovimiento(pos, color, m):
         for i in pos:
             if i > 7 or i < 0: #Miramos si estamos dentro del rango de actuación
                 return False
-        if m[pos[0]][pos[1]] == 0 or m[pos[0]][pos[1]].equipo != color or m[pos[2]][pos[3]].equipo == m[pos[0]][pos[1]].equipo:
+        if m[pos[0]][pos[1]].equipo != color or m[pos[2]][pos[3]].equipo == m[pos[0]][pos[1]].equipo:
             return False
         #elif m[pos[0]][pos[1]].equipo != color:
         #    return False
@@ -31,8 +31,10 @@ def controlMovimiento(pos, color, m):
         #    return move(pos, m)
         #elif m[pos[2]][pos[3]].equipo == m[pos[0]][pos[1]].equipo: #Miramos si la pieza de destino es de nuestro equipo
         #    return False
-        else:
+        elif m[pos[0]][pos[1]].valid_move(m, pos):
             return move(pos, m)
+        else:
+            return False
 
 def enroque(pos, m):
     c = pos[3] - pos[1]
@@ -48,13 +50,9 @@ def enroque(pos, m):
         m[pos[2]][pos[3] - 2] = Pieza(" ", "N", pos[2], pos[3] - 2)
 
 def move(pos, m):
-    mcomp = m[pos[0]][pos[1]].valid_move(m, pos)
-    if mcomp:
-        if m[pos[0]][pos[1]].enroque:
-            enroque(pos, m)
-        else:
-            m[pos[2]][pos[3]] = m[pos[0]][pos[1]]
-            m[pos[0]][pos[1]] = Pieza(" ", "N", pos[0], pos[1])
-        return True 
+    if m[pos[0]][pos[1]].enroque:
+        enroque(pos, m)
     else:
-        return False
+        m[pos[2]][pos[3]] = m[pos[0]][pos[1]]
+        m[pos[0]][pos[1]] = Pieza(" ", "N", pos[0], pos[1])
+    return True 

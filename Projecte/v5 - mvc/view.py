@@ -1,4 +1,3 @@
-#Mirar de juntar
 def dibujarMesa(m, color, jugador):
     mesa = "\n"
     if jugador == 1:
@@ -12,25 +11,24 @@ def dibujarMesa(m, color, jugador):
 
 def dibujarMesaStringAzul(matriz):
     mesa = ""
-    mesa += "\033[;37m" + "        A     B     C     D     E     F     G     H" + "\n"
-    mesa += "   ---------------------------------------------------" + "\n"
+    mesa += "\033[;37m" + "        " + "A     B     C     D     E     F     G     H" + "\n"
+    mesa += "   " + "---------------------------------------------------" + "\n"
     for i in range(len(matriz)):
         mesa += str(i + 1) + "| " + '[ | '
         for j in range(len(matriz[i])):
             mesa += " " + matriz[i][j].getPieza() + "  | " 
-        mesa += ']' + "\n" + "   ---------------------------------------------------" + "\n"
-    mesa += "        A     B     C     D     E     F     G     H" + "\n" + "\n"
+        mesa += ']' + "\n" + "   " + "---------------------------------------------------" + "\n"
+    mesa += "        " + "A     B     C     D     E     F     G     H" + "\n" + "\n"
     return mesa
 
-#Mirar de juntar
 def dibujarMesaStringRojo(matriz):
     mesa = ""
-    mesa += "\033[;37m" + "        H     G     F     E     D     C     B     A" + "\n"
-    mesa += "   ---------------------------------------------------" + "\n" 
+    mesa += "\033[;37m" + "        " + "H     G     F     E     D     C     B     A" + "\n"
+    mesa += "   " + "---------------------------------------------------" + "\n" 
     for i in range(len(matriz)):
         mesa += str(8 - i) + "| " + '[ | '
         for j in range(len(matriz[7 - i])):
             mesa += " " + matriz[7 - i][7 - j].getPieza() + "  | " 
-        mesa += ']' + "\n" + "   ---------------------------------------------------" + "\n"
-    mesa += "        H     G     F     E     D     C     B     A" + "\n" + "\n"
+        mesa += ']' + "\n" + "   " + "---------------------------------------------------" + "\n"
+    mesa += "        " + "H     G     F     E     D     C     B     A" + "\n" + "\n"
     return mesa

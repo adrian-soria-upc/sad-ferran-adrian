@@ -26,7 +26,7 @@ class Tablero():
         for i in range(len(self.M[6])):
             self.M[6][i] = Peon(6, i, 1) 
         
-        for i in range(len(self.M)):
+        for i in range(len(self.M[7])):
             self.M[7][i] = piezasAzules[i]
     
     def comprobarPartida(self):
@@ -34,13 +34,13 @@ class Tablero():
         pos = []
         for i in range(len(self.M)):
             for j in range(len(self.M[i])):
-                if self.M[i][j] != 0:
+                if self.M[i][j].equipo != "N":
                     if self.M[i][j].tipo == "K":
                         numK += 1
                         pos.append(i)
                         pos.append(j)
         if numK < 2:
-            if self.M[pos[0]][pos[1]].equipo == 0:
+            if self.M[pos[0]][pos[1]].equipo == "N":
                 self.jugador = 0
                 return False
             else:

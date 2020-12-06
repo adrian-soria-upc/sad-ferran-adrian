@@ -29,7 +29,7 @@ def client(s):
 		if tablero.jugador == p and tablero.comprobarPartida() and len(users) == 2:
 			with lock:
 				u=users[abs(p-1)][abs(p-1)]
-				if controller.comandocorrecto(p, line, tablero.M):
+				if controller.comandoCorrecto(p, line, tablero.M):
 					tablero.jugador = abs(tablero.jugador - 1)
 					if color == "azul":
 						u.send(f"{BLUE}{nick}>{DEFAULT} {line}".encode("UTF-8"))
