@@ -8,8 +8,8 @@ class Queen(Pieza):
         Pieza.__init__(self, "Q", equipo, fila, col)  
 
     def valid_move(self, mesa, pos):
-        alfil = Alfil(self.fila, self.col, self.equipo)
-        torre = Torre(self.fila, self.col, self.equipo)
+        alfil = Alfil(pos[0], pos[1], self.equipo)
+        torre = Torre(pos[0], pos[1], self.equipo)
         if alfil.valid_move(mesa, pos) or torre.valid_move(mesa, pos):
             return True
         else:
