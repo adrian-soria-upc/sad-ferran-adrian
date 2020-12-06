@@ -6,17 +6,16 @@ class Peon(Pieza):
         Pieza.__init__(self, "P", equipo, fila, col)        
         
     def valid_move(self, mesa, pos):
-        print("INTENTO PEON")
         f = pos[2] - pos[0] #Fila final - Fila inicial
         c = pos[3] - pos[1] #Columna final - Columna inicial
         mpos = True
         if abs(f) > 1 or abs(c) > 1:
             if pos[0] == 1 or pos[0] == 6:
                 if abs(f) == 2:
-                    if self.equipo == 1 and mesa[pos[0] - 1][pos[1]] == 0:
+                    if self.equipo == 1 and mesa[pos[0] - 1][pos[1]].equipo == "N":
                         if pos[3] == pos[1]:
                             mpos = True      
-                    elif self.equipo == 0 and mesa[pos[0] + 1][pos[1]] == 0:
+                    elif self.equipo == 0 and mesa[pos[0] + 1][pos[1]].equipo == "N":
                         if pos[3] == pos[1]:
                             mpos = True          
                     else:
@@ -30,7 +29,7 @@ class Peon(Pieza):
         else:
             if pos[3] == pos[1]:
                 mpos = True
-            elif mesa[pos[2]][pos[3]] == 0:
+            elif mesa[pos[2]][pos[3]].equipo == "N":
                 mpos = False
         return mpos
     

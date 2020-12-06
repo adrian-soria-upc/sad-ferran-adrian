@@ -11,7 +11,7 @@
 
 ## Errors
 
-- A VEGADES EL VERMELL NO S'INICIA --> ***Amb un print al servidor (line 15) no falla. Mirar forma millor.
+- A VEGADES EL VERMELL NO S'INICIA --> ***Amb un print al servidor (line 15) no falla tant. Mirar forma millor.
 
 
 

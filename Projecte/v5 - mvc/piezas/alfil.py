@@ -13,22 +13,22 @@ class Alfil(Pieza):
             #Izquierda-Arriba
             if f < 0 and c <0:
                 for i in range(abs(f)):
-                    if i != 0 and mesa[pos[0] - i][pos[1] - i] != 0:
+                    if i != 0 and mesa[pos[0] - i][pos[1] - i].equipo != "N":
                         mpos = False
             #Derecha-Arriba
             elif f < 0 and c > 0:
                 for i in range(abs(f)):
-                    if i!=0 and mesa[pos[0] - i][pos[1] + i] != 0:
+                    if i!=0 and mesa[pos[0] - i][pos[1] + i].equipo != "N":
                         mpos = False
             #Abajo-Izquierda
             elif f > 0 and c < 0:   
                 for i in range(abs(f)):
-                    if i != 0 and mesa[pos[0] + i][pos[1] - i] != 0:
+                    if i != 0 and mesa[pos[0] + i][pos[1] - i].equipo != "N":
                         mpos = False
             #Abajo-Derecha
             elif f > 0 and c > 0:
                 for i in range(abs(f)):
-                    if i!=0 and mesa[pos[0] + i][pos[1] + i] != 0:
+                    if i!=0 and mesa[pos[0] + i][pos[1] + i].equipo != "N":
                         mpos = False
         else:
             mpos = False 

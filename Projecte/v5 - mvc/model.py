@@ -4,6 +4,7 @@ from piezas.alfil import Alfil
 from piezas.caballo import Caballo
 from piezas.king import King
 from piezas.queen import Queen
+from piezas.pieza import Pieza
 
 class Tablero():
     def __init__(self):
@@ -18,6 +19,10 @@ class Tablero():
         for i in range(len(self.M[1])):
             self.M[1][i] = Peon(1, i, 0) 
         
+        for i in range(5):
+            for j in range(8):
+                self.M[i + 2][j] = Pieza(" ", "N", i, j)
+ 
         for i in range(len(self.M[6])):
             self.M[6][i] = Peon(6, i, 1) 
         
@@ -43,4 +48,3 @@ class Tablero():
                 return False
         else:
             return True
-

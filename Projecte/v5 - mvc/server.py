@@ -30,6 +30,7 @@ def client(s):
 			with lock:
 				u=users[abs(p-1)][abs(p-1)]
 				if controller.comandocorrecto(p, line, tablero.M):
+					tablero.jugador = abs(tablero.jugador - 1)
 					if color == "azul":
 						u.send(f"{BLUE}{nick}>{DEFAULT} {line}".encode("UTF-8"))
 					else:
@@ -43,7 +44,6 @@ def client(s):
 						else:
 							u.send(("EL GANADOR ES EL JUGADOR AZUL\n").encode("UTF-8"))
 							s.send(("EL GANADOR ES EL JUGADOR AZUL\n").encode("UTF-8"))
-					tablero.jugador = abs(tablero.jugador - 1)
 				else: 
 					s.send("Comanda erronea\n".encode("UTF-8"))		
 	s.close()

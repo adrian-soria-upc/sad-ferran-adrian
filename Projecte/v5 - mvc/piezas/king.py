@@ -14,14 +14,14 @@ class King(Pieza):
             if pos[0] == self.fila and pos[1] == self.col:
                 if f == 0:
                     if c == -2:
-                        if mesa[pos[0]][pos[1] - 1] == 0 and  mesa[pos[0]][pos[1] - 2] == 0 and mesa[pos[0]][pos[1] - 3] == 0:
-                            if mesa[pos[0]][pos[1] - 4] != 0:
+                        if mesa[pos[0]][pos[1] - 1].equipo == "N" and  mesa[pos[0]][pos[1] - 2].equipo == "N" and mesa[pos[0]][pos[1] - 3].equipo == "N":
+                            if mesa[pos[0]][pos[1] - 4].equipo != "N":
                                 if mesa[pos[0]][pos[1] - 4].tipo == "T" and mesa[pos[0]][pos[1] - 4].equipo == self.equipo:
                                     mpos = True
                                     self.enroque = True
                     elif c == 2:
-                        if mesa[pos[0]][pos[1] + 1] == 0 and  mesa[pos[0]][pos[1] + 2] == 0:
-                            if mesa[pos[0]][pos[1] + 3] != 0:
+                        if mesa[pos[0]][pos[1] + 1].equipo == "N" and  mesa[pos[0]][pos[1] + 2].equipo == "N":
+                            if mesa[pos[0]][pos[1] + 3].equipo != "N":
                                 if mesa[pos[0]][pos[1] + 3].tipo == "T" and mesa[pos[0]][pos[1] + 3].equipo == self.equipo:
                                     mpos = True
                                     self.enroque = True

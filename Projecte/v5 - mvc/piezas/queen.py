@@ -24,32 +24,32 @@ class Queen(Pieza):
             #Abajo-Izquierda
             elif f > 0 and c < 0:   
                 for i in range(abs(f)):
-                    if i != 0 and mesa[pos[0] + i][pos[1] - i] != 0:
+                    if i != 0 and mesa[pos[0] + i][pos[1] - i].equipo != "N":
                         mpos = False
             #Abajo-Derecha
             elif f > 0 and c > 0:
                 for i in range(abs(f)):
-                    if i!=0 and mesa[pos[0] + i][pos[1] + i] != 0:
+                    if i!=0 and mesa[pos[0] + i][pos[1] + i].equipo != "N":
                         mpos = False
         #Arriba
         elif c == 0 and f < 0:
             for i in range(abs(f)):
-                if i != 0 and mesa[pos[0] - i][pos[1]] != 0:
+                if i != 0 and mesa[pos[0] - i][pos[1]].equipo != "N":
                     mpos = False
         #Abajo
         elif c == 0 and f > 0:
             for i in range(abs(f)):
-                if i != 0 and mesa[pos[0] + i][pos[1]] != 0:
+                if i != 0 and mesa[pos[0] + i][pos[1]].equipo != "N":
                     mpos = False
         #Izquierda
         elif c < 0 and f == 0:
             for i in range(abs(c)):
-                if  i != 0 and mesa[pos[0]][pos[1] - i] != 0:
+                if  i != 0 and mesa[pos[0]][pos[1] - i].equipo != "N":
                     mpos = False
         #Derecha
         elif c > 0 and f == 0:
             for i in range(abs(c)):
-                if i != 0 and mesa[pos[0]][pos[1] + i] != 0:
+                if i != 0 and mesa[pos[0]][pos[1] + i].equipo != "N":
                     mpos = False
         else: 
             mpos = False

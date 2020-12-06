@@ -11,21 +11,21 @@ class Torre(Pieza):
         #Arriba
         if c == 0 and f < 0:
             for i in range(abs(f)):
-                if i != 0 and mesa[pos[0] - i][pos[1]] != 0:
+                if i != 0 and mesa[pos[0] - i][pos[1]].equipo != "N":
                     mpos = False
         #Abajo
         elif c == 0 and f > 0:
             for i in range(abs(f)):
-                if i != 0 and mesa[pos[0] + i][pos[1]] != 0:
+                if i != 0 and mesa[pos[0] + i][pos[1]].equipo != "N":
                     mpos = False
         #Izquierda
         elif c < 0 and f == 0:
             for i in range(abs(c)):
-                if  i != 0 and mesa[pos[0]][pos[1] - i] != 0:
+                if  i != 0 and mesa[pos[0]][pos[1] - i].equipo != "N":
                     mpos = False
         #Derecha
         elif c > 0 and f == 0:
             for i in range(abs(c)):
-                if i != 0 and mesa[pos[0]][pos[1] + i] != 0:
+                if i != 0 and mesa[pos[0]][pos[1] + i].equipo != "N":
                     mpos = False
         return mpos
