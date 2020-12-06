@@ -1,8 +1,6 @@
 import socket, sys, threading
 import view, controller
 from model import Tablero
-
-#control-z para salir
 #ejecutar codigo: python3 server.py 1234
 
 BLUE = '\033[34m'
