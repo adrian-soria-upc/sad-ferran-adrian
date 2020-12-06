@@ -3,6 +3,10 @@
 
 - Optimitzar
 
+- Posar Blue, RED... al View
+
+- Strings del server al View
+
 - Comprobar més errors
 
 - *EXTRA:* 
