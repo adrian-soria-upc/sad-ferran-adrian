@@ -28,7 +28,7 @@ def client(s):
 			with lock:
 				u=users[abs(p-1)][abs(p-1)] #Mirar
 				if controller.comandoCorrecto(p, line, tablero.M):
-					tablero.jugador = abs(tablero.jugador - 1)#Mirar
+					#tablero.jugador = abs(tablero.jugador - 1)#Mirar
 					if color == "azul":
 						u.send(f"{BLUE}{nick}>{DEFAULT} {line}".encode("UTF-8"))
 					else:
