@@ -4,8 +4,8 @@ from piezas.torre import Torre
 
 class Queen(Pieza):
     
-    def __init__(self, fila, col, equipo):
-        Pieza.__init__(self, "Q", equipo, fila, col)  
+    def __init__(self, equipo):
+        Pieza.__init__(self, "Q", equipo)  
 
     def valid_move(self, mesa, pos):
         alfil = Alfil(pos[0], pos[1], self.equipo)

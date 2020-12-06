@@ -1,15 +1,15 @@
 #POSAR RED;BLUE;DEFAULT
 #Posar Strings Server
-def dibujarMesa(m, color, jugador):
-    mesa = "\n"
-    if jugador == 1:
+def dibujarMesa(color, tablero):
+    mesa = ""
+    if tablero.turno == 1:
         mesa += "\n" + "\033[;36m"+"                   TURNO JUGADOR AZUL" + "\n"
     else:
         mesa += "\n" + "\033[;31m"+"                   TURNO JUGADOR ROJO" + "\n"
     if color == 1:
-        return mesa + dibujarMesaStringAzul(m)
+        return mesa + dibujarMesaStringAzul(tablero.M)
     else:
-        return mesa + dibujarMesaStringRojo(m)
+        return mesa + dibujarMesaStringRojo(tablero.M)
 
 def dibujarMesaStringAzul(matriz):
     mesa = ""
@@ -20,7 +20,7 @@ def dibujarMesaStringAzul(matriz):
         for j in range(len(matriz[i])):
             mesa += " " + matriz[i][j].getPieza() + "  | " 
         mesa += ']' + "\n" + "   " + "---------------------------------------------------" + "\n"
-    mesa += "        " + "A     B     C     D     E     F     G     H" + "\n" + "\n"
+    mesa += "        " + "A     B     C     D     E     F     G     H" + "\n" + "\n" + "\n"
     return mesa
 
 def dibujarMesaStringRojo(matriz):
@@ -32,5 +32,5 @@ def dibujarMesaStringRojo(matriz):
         for j in range(len(matriz[7 - i])):
             mesa += " " + matriz[7 - i][7 - j].getPieza() + "  | " 
         mesa += ']' + "\n" + "   " + "---------------------------------------------------" + "\n"
-    mesa += "        " + "H     G     F     E     D     C     B     A" + "\n" + "\n"
+    mesa += "        " + "H     G     F     E     D     C     B     A" + "\n" + "\n" + "\n"
     return mesa

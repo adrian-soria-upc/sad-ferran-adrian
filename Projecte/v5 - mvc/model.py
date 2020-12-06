@@ -9,24 +9,16 @@ from piezas.pieza import Pieza
 class Tablero():
     def __init__(self):
         self.M= [[0 for x in range(8)] for _ in range(8)] #Mesa
-        self.jugador = 1 #azul = 1, rojo = 0
-        piezasRojas = [Torre(0,0,0),Caballo(0,1,0),Alfil(0,2,0),Queen(0,3,0),King(0,4,0),Alfil(0,5,0),Caballo(0,6,0),Torre(0,7,0)]
-        piezasAzules = [Torre(0,0,1),Caballo(0,1,1),Alfil(0,2,1),Queen(0,3,1),King(0,4,1),Alfil(0,5,1),Caballo(0,6,1),Torre(0,7,1)]
+        self.turno = 1 #azul = 1, rojo = 0
+        piezasRojas = [Torre(0),Caballo(0),Alfil(0),Queen(0),King(0),Alfil(0),Caballo(0),Torre(0)]
+        piezasAzules = [Torre(1),Caballo(1),Alfil(1),Queen(1),King(1),Alfil(1),Caballo(1),Torre(1)]
 
         for i in range(len(self.M)):
+            for j in range(5):
+                self.M[j + 2][i] = Pieza(" ", "N")
             self.M[0][i] = piezasRojas[i]
-
-        for i in range(len(self.M[1])):
-            self.M[1][i] = Peon(1, i, 0) 
-        
-        for i in range(5):
-            for j in range(8):
-                self.M[i + 2][j] = Pieza(" ", "N", i, j)
- 
-        for i in range(len(self.M[6])):
-            self.M[6][i] = Peon(6, i, 1) 
-        
-        for i in range(len(self.M[7])):
+            self.M[1][i] = Peon(0)
+            self.M[6][i] = Peon(1)
             self.M[7][i] = piezasAzules[i]
     
     def comprobarPartida(self):
@@ -40,9 +32,9 @@ class Tablero():
                     pos.append(j)
         if numK < 2:
             if self.M[pos[0]][pos[1]].equipo == 0:
-                self.jugador = 0
+                self.turno = 0
             else:
-                self.jugador = 1
+                self.turno = 1
             return False
         else:
             return True

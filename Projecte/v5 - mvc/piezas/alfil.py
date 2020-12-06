@@ -2,8 +2,8 @@ from piezas.pieza import Pieza
 
 class Alfil(Pieza):
     
-    def __init__(self, fila, col, equipo):
-        Pieza.__init__(self, "A", equipo, fila, col)  
+    def __init__(self, equipo):
+        Pieza.__init__(self, "A", equipo)  
     
     def valid_move(self, mesa, pos):
         f = pos[2] - pos[0] #Fila final - Fila inicial

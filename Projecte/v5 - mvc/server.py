@@ -10,32 +10,31 @@ DEFAULT = '\033[0m'
 def client(s):
 	sin = s.makefile('r')
 	nick = sin.readline().rstrip()
+	if len(users) == 0: #Optimitzar
+		p = 1 #Color del client
+		color = "azul"
+	else:
+		p = 0
+		color = "rojo"
 	with lock:
-		if len(users) == 0: #Optimitzar
-			p = 1 #Color del client
-			color = "azul"
-		else:
-			p = 0
-			color = "rojo"
 		users[p] = {}
 		users[p][p] = s
 		s.send(("Bienvenido " + nick + ".\nEn este juego de ajedrez, las piezas azules coresponden a las blancas y las rojas a las negras.\nPara hacer un movimiento debes introducir por ejemplo: 7d6d. Donde '7d' corresponde a las coordenadas de origen de la pieza, y 6d las coordenadas de destino. Si introduces ff te rendiras. El color de tus piezas es: ").encode("UTF-8"))
 		s.send(color.encode("UTF-8")) #Juntar!!!!!!!!!
-		s.send(view.dibujarMesa(tablero.M, p, tablero.jugador).encode("UTF-8"))
+		s.send(view.dibujarMesa(p, tablero).encode("UTF-8"))
 	for line in sin:
-		if tablero.jugador == p and tablero.comprobarPartida() and len(users) == 2:
+		if tablero.turno == p and tablero.comprobarPartida() and len(users) == 2:
 			with lock:
 				u = users[abs(p-1)][abs(p-1)] #Socket enemigo
-				if controller.comandoCorrecto(p, line, tablero.M):
-					tablero.jugador = abs(tablero.jugador - 1)#Mirar
+				if controller.comandoCorrecto(p, line, tablero):
 					if color == "azul":
 						u.send(f"{BLUE}{nick}>{DEFAULT} {line}".encode("UTF-8"))
 					else:
 						u.send(f"{RED}{nick}>{DEFAULT} {line}".encode("UTF-8"))
-					u.send(view.dibujarMesa(tablero.M, abs(p-1), tablero.jugador).encode("UTF-8"))
-					s.send(view.dibujarMesa(tablero.M, p, tablero.jugador).encode("UTF-8"))
+					u.send(view.dibujarMesa(abs(p-1), tablero).encode("UTF-8"))
+					s.send(view.dibujarMesa(p, tablero).encode("UTF-8"))
 					if tablero.comprobarPartida() == False:
-						if tablero.jugador == 0:
+						if tablero.turno == 0:
 							u.send(("EL GANADOR ES EL JUGADOR ROJO\n").encode("UTF-8"))
 							s.send(("EL GANADOR ES EL JUGADOR ROJO\n").encode("UTF-8"))
 						else:
@@ -53,8 +52,8 @@ tablero = Tablero()
 
 serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serv.bind(('', int(sys.argv[1])))
-serv.listen() #Si es passa un argument numéric és el màxim de clients abans de "tombar" nous
+serv.listen(2)
 
-while len(users) < 2: 
+while True:
 	s, _ = serv.accept()
 	threading.Thread(target=client, args = (s,)).start()
