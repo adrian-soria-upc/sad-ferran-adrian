@@ -1,3 +1,6 @@
+BLUE = '\033[34m'
+RED = '\033[31m'
+DEFAULT = '\033[0m'
 class Pieza:
     def __init__(self, tipo, equipo):
         self.tipo = tipo
@@ -6,6 +9,6 @@ class Pieza:
     
     def getPieza(self):
         if self.equipo == 0:
-            return "\033[;31m"+ self.tipo + "\033[;37m"
+            return RED+ self.tipo + DEFAULT
         else:
-            return "\033[;36m"+ self.tipo + "\033[;37m"  
+            return BLUE+ self.tipo + DEFAULT

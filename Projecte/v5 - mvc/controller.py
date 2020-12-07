@@ -1,5 +1,5 @@
 from piezas.pieza import Pieza
-#intToString() falta per fer
+from piezas.queen import Queen
 
 def comandoCorrecto(color, line, tablero):
     pos = [] 
@@ -11,6 +11,7 @@ def comandoCorrecto(color, line, tablero):
     pos.append(ord(line[len(line) - 4]) - ord("A"))
     pos.append(ord(line[len(line) - 3]) - ord("1"))
     pos.append(ord(line[len(line) - 2]) - ord("A"))
+    peonFin(tablero)
     return controlMovimiento(pos, color, tablero)
 
 def tumbarRey(color,m):
@@ -52,3 +53,9 @@ def move(pos,tablero):
     tablero.turno = abs(tablero.turno - 1)
     return True 
 
+def peonFin(tablero):
+    for i in range(len(tablero.M[0])):
+        if tablero.M[0][i].tipo == "P" and tablero.M[0][i].equipo == 1:
+            tablero.M[0][i] = Queen(1)
+        if tablero.M[7][i].tipo == "P" and tablero.M[7][i].equipo == 0:
+            tablero.M[7][i] = Queen(0)
