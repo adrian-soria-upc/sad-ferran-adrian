@@ -1,9 +1,13 @@
-# v5
+# v6
 ## Coses que falten
 
-- Optimitzar
+- Només entrin 2
 
-- Comprobar més errors
+- Comprobar i solucionar errors
+
+*Extra:*
+
+   - Exceptions
 
 ## Errors
 
