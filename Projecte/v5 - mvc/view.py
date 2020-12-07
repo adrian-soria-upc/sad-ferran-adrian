@@ -1,4 +1,3 @@
-#Posar Strings Server
 BLUE = '\033[34m'
 RED = '\033[31m'
 DEFAULT = '\033[0m'
@@ -9,9 +8,15 @@ def dibujarMesa(color, tablero):
     else:
         mesa += "\n" + RED +"                   TURNO JUGADOR ROJO" + "\n"
     if color == 1:
-        return mesa + dibujarMesaStringAzul(tablero.M)
+        mesa += dibujarMesaStringAzul(tablero.M)
     else:
-        return mesa + dibujarMesaStringRojo(tablero.M)
+        mesa += dibujarMesaStringRojo(tablero.M)
+    if tablero.comprobarPartida() == False:
+        if tablero.turno == 1:
+            mesa += "EL GANADOR ES EL JUGADOR ROJO\n"
+        else:
+            mesa += "EL GANADOR ES EL JUGADOR AZUL\n"
+    return mesa		
 
 def dibujarMesaStringAzul(matriz):
     mesa = ""
@@ -42,14 +47,8 @@ def dibujarInicio(jugador, tablero, nick, color):
     mesa += jugador + " ¡SUERTE!\n" 
     return mesa + dibujarMesa(color, tablero)
 
-def finPartida(turno):
-    if turno == 0:
-        return "EL GANADADOR ES EL JUGADOR ROJO"
-    else:
-        return "EL GANADOR ES EL JUGADOR AZUL"
-
 def dibujarComanda(color, nick, line):
-    if color == "azul":
+    if color == 1:
         return f"{BLUE}{nick}>{DEFAULT} {line}"
     else:
         return f"{RED}{nick}>{DEFAULT} {line}"

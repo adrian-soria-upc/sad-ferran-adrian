@@ -2,8 +2,8 @@ import socket, sys, threading
 #ejecutar codigo: python3 client.py localhost 1234 usuario
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-nick = sys.argv[3]
 s.connect((sys.argv[1], int(sys.argv[2])))	
+nick = sys.argv[3]
 
 def input():
 	out = open(s.fileno(), 'w', 1)
@@ -17,5 +17,4 @@ def output():
 	inp = open(s.fileno(), 'r')
 	for line in inp:
 		sys.stdout.write(line)
-	s.shutdown(socket.SHUT_RD)
 threading.Thread(target = output).start()

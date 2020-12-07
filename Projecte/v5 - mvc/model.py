@@ -30,12 +30,5 @@ class Tablero():
                     numK += 1
                     pos.append(i)
                     pos.append(j)
-        if numK < 2:
-            if self.M[pos[0]][pos[1]].equipo == 0:
-                self.turno = 0
-            else:
-                self.turno = 1
-            return False
-        else:
-            return True
-#Anadir funciones de server (?)
+        if numK < 2: return False
+        else: return True
