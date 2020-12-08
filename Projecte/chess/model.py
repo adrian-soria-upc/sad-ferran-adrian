@@ -23,13 +23,10 @@ class Tablero():
     
     def comprobarPartida(self):
         numK = 0
-        pos = []
         for i in range(len(self.M)):
             for j in range(len(self.M[i])):
                 if self.M[i][j].tipo == "K":
                     numK += 1
-                    pos.append(i)
-                    pos.append(j)
         if numK < 2: 
             return False
         else: 
