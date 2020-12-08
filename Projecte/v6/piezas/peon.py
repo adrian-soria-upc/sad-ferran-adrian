@@ -10,9 +10,9 @@ class Peon(Pieza):
         c = pos[3] - pos[1] #Columna final - Columna inicial
         mpos = True
         if self.equipo == 0 and f <= 0: #Las rojas solo se pueden mover hacia abajo (filas positivas)
-            mpos = False
+            return False
         elif self.equipo == 1 and f >= 0: #Las azules solo se pueden mover hacia arriba (filas negativas)
-            mpos = False
+            return False
         elif abs(f) > 1 or abs(c) > 1:
             if pos[0] == 1 or pos[0] == 6:
                 if abs(f) == 2:
