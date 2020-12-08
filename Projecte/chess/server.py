@@ -6,7 +6,6 @@ from model import Tablero
 def client(s):
 	sin = s.makefile('r')
 	nick = sin.readline().rstrip()
-	inpS = open(s.fileno(), 'w', 1)
 	if len(users) == 0: 
 		p = 1 
 		color = "azul"
@@ -16,18 +15,17 @@ def client(s):
 	with lock:
 		users[p] = {}
 		users[p][p] = s
-		inpS.write(view.dibujarInicio(color,tablero, nick, p))
+		s.send(view.dibujarInicio(color,tablero, nick, p).encode("UTF-8"))
 	for line in sin:
 		if tablero.turno == p and tablero.comprobarPartida() and len(users) == 2:
 			with lock:
 				u = users[abs(p-1)][abs(p-1)] #Socket enemigo
-				inpU = open(u.fileno(), 'w', 1)
 				if controller.comandoCorrecto(p, line, tablero):
-					inpU.write(view.dibujarComanda(p, nick, line))
-					inpU.write(view.dibujarMesa(abs(p-1), tablero))
-					inpS.write(view.dibujarMesa(p, tablero))
+					u.send(view.dibujarComanda(p, nick, line).encode("UTF-8"))
+					u.send(view.dibujarMesa(abs(p-1), tablero).encode("UTF-8"))
+					s.send(view.dibujarMesa(p, tablero).encode("UTF-8"))
 				else: 
-					inpS.write("Comanda erronea\n")
+					s.send("Comanda erronea\n".encode("UTF-8"))
 	s.close()
 	with lock:
 		del users[p]
