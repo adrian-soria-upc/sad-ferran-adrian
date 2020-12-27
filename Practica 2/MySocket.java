@@ -1,28 +1,55 @@
-/*Programar dues classes MySocket i MyServerSocket que siguin funcionalment equivalents
-a les classes de Java Socket i ServerSocket però que encapsu-li’n excepcions i els corresponents
-streams de text BufferedReader i PrintWriter. Aquestes classes hauran de disposar de mètodes de 
-lectura/escriptura dels tipus bàsics.*/
-public class MySocket{
-	private final Socket socket;
-    private final BufferedReader entrada;
-    private final PrintWriter sortida;
-
-    public MySocket(String host, String port){
-    	s = new Socket("host", /*Ha de ser un int*/"port");
-
-    	entrada = new BufferedReader(new InputStreamReader(s.getInputStream()));
-        sortida = new PrintWriter(s.getOutputStream(), true);
-
-
-        sendMessage(host);
-        sendMessage(port);
+package Practica2;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+public class MySocket {
+    private final Socket socket;
+    private final BufferedReader output;
+    private final PrintWriter input;
+    public MySocket(String nick) throws IOException {
+        socket = new Socket("localhost", 1234);
+        output = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        input = new PrintWriter(socket.getOutputStream(), true);
+        input.println(nick);
     }
-
-     public void sendMessage(final String message) {
-        out.println(message);
+    private static class Input implements Runnable {//Escriure al socket
+        private final MySocket socket;
+        private final BufferedReader in;
+        public Input(final MySocket socket) {
+            this.socket = socket;
+            in = new BufferedReader(new InputStreamReader(System.in));
+        }
+        public void run() {
+            try {
+                String linia;
+                while ((linia = in.readLine()) != null) {
+                    socket.input.println(linia);
+                }
+            } catch (final IOException e) {
+                e.printStackTrace();
+            }
+    	}
     }
-
-    public String receiveMessage() throws IOException {
-        return in.readLine();
+    private static class Receive implements Runnable {//Lectura del socket
+        private final MySocket socket;
+        public Receive(final MySocket socket) {
+            this.socket = socket;
+        }
+        public void run() {
+            while(true) {
+                try {
+                System.out.println(socket.output.readLine());
+                } catch (final IOException e) {
+                    e.printStackTrace();
+                }
+            }
+    	}
+    }
+    public static void main(final String args[]) throws IOException {
+        final MySocket s = new MySocket(args[0]);     
+        new Thread(new Input(s)).start();
+        new Thread(new Receive(s)).start();
     }
 }
