@@ -7,7 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.Iterator;
+
 public class MyServerSocket {
     private ServerSocket ss;
     private Map <String, Socket> users;
@@ -19,14 +19,14 @@ public class MyServerSocket {
         while (true) {
             Socket s = ss.accept();
             new Thread(new Client(s)).start();
-	}
+	    }   
     }
     private class Client implements Runnable {
         private Socket s;
         private BufferedReader output;
         private PrintWriter input;
         public Client(Socket s) throws IOException {
-            this.s=s;
+            this.s = s;
             output = new BufferedReader(new InputStreamReader(s.getInputStream()));
             input = new PrintWriter(s.getOutputStream(), true);
         }

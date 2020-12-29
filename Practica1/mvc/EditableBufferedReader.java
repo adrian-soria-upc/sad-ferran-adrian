@@ -26,63 +26,64 @@ public class EditableBufferedReader extends BufferedReader {
   }
 
   public int read() throws IOException{
-  	while(true){
-  		int command = super.read();
-  		switch(command){
-  			case 1:
-  				line.home();
-  				break;
-  			case 5:
-  				line.end();
-  				break;
-  			/*AIXO ÉS PROVISIONAL: el problema es que no sóc capaç de llegir
-  			el botó suprimir, simplement s'hauria de canviar el case per el 			suprimir, actualment el suprimir funciona apretant primer el espai
-  			i després el borrar. Per posar un espai s'apreta 2 cops el espai.*/ 
-  			case 32:
-  				switch(super.read()){
-   				 case 32:
-   				 	line.addChar((char) ' ');
-   				 	break;
-  				 case 127:
-  				 	line.delete();
-  					break;
-  				 default:
-  					break;
-  				}
-  				break;
-   			//case 21:
-  			//	line.delete();
-  			//	System.out.print(line.displayString());
-  			//	break;
-  			case 127:
-  				line.backspace();
-  				break;
-        //Diria que així hauria d'estar bé!!!
-			case 27:
-			      switch (super.read()) {
-				case 91:
-				  switch (super.read()) {
-				    case 67:
-				      line.moveCursor(1);
-				      break;
-				    case 68:
-				      line.moveCursor(-1);
-				      break;
-				    }
-				      break;
-				}
-			break;
-			//insertar?
-			default:
-				return command;  	
-  		}
-  	}	
-  }
+	while(true){
+		int command = super.read();
+		switch(command){
+			case Dict.HOME:
+				line.home();
+				break;
+			case Dict.END:
+				line.end();
+				break;
+			/*AIXO ÉS PROVISIONAL: el problema es que no sóc capaç de llegir
+			el botó suprimir, simplement s'hauria de canviar el case per el 			suprimir, actualment el suprimir funciona apretant primer el espai
+			i després el borrar. Per posar un espai s'apreta 2 cops el espai.*/ 
+			//case 32:
+			//	switch(super.read()){
+			 //	 case 32:
+			 //	 	line.addChar((char) ' ');
+			 //	 	break;
+			//	 case 127:
+			//	 	line.delete();
+			//		System.out.print(line.displayString());
+			//		break;
+			//	 default:
+			//		break;
+			//	}
+			//	break;
+			 case Dict.DELETE://21:
+				line.delete();
+				break;
+			case Dict.BACKSPACE:
+				line.backspace();
+				break;
+		  case Dict.INSERT:
+				line.insert();
+				break;
+		  case Dict.ESC:
+				switch (super.read()) {
+			  case Dict.CORCHETE:
+				switch (super.read()) {
+				  case Dict.IZQUIERDA:
+					line.moveCursor(1);
+					break;
+				  case Dict.DERECHA:
+					line.moveCursor(-1);
+					break;
+				  }
+					break;
+			  }
+		  break;
+		  default:
+			  return command;  	
+		}
+	}	
+}
   
   public String readLine() throws IOException{
   	setRaw();
 	int inChar = 0;
-  	while((inChar = read()) != 13){
+  	while((inChar = read()) != Dict.ENTER){
   		line.addChar((char) inChar);
   	}
   	unsetRaw();
