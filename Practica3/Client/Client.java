@@ -1,0 +1,1 @@
+//S'ha de crear un client que crei la interfície gràfica i obri el chat. També s'ha d'implementar l'enviament de missatges
