@@ -1,1 +1,0 @@
-//Socket que crea el client, ha de llegir el missatge que li passa el client, i enviar-lo i rebre de nous.

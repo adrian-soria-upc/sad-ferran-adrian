@@ -1,1 +1,0 @@
-//Crear el Socket i posar-ñp a funcionar.
