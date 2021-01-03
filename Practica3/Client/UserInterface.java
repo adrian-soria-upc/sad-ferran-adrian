@@ -14,9 +14,13 @@ public class UserInterface extends JFrame{
 
         setLayout(new GridBagLayout());
 
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setVerticalScrollBarPolicy(22);
+        Dimension preferredSize = new Dimension(334,150);
+        scrollPane.setPreferredSize(preferredSize);
         JList<String> messageList = new JList<>(messages);
-        messageList.setFixedCellWidth(325);
-        add(messageList, genGrid(0, 1, 4, 1)); //Mostra l'historial del chat
+        scrollPane.setViewportView(messageList);
+        add(scrollPane, genGrid(0, 1, 1, 1)); //Mostra l'historial del chat
         
 
         JTextField messageTextField = new JTextField(30);
@@ -30,11 +34,6 @@ public class UserInterface extends JFrame{
                 messageTextField.setText("");
                 //Faltaria posar nom d'ususari que envia
                 messages.addElement(message);
-                System.out.println(messages.getSize());
-                //Control perquè no es desconfiguri la finestra
-                if (messages.getSize() > 10){
-                    messages.remove(0);
-                }
             }
         });
         add(sendMessageButton, genGrid(0, 3, 4, 1));
