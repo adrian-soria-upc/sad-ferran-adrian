@@ -1,6 +1,4 @@
 public abstract class Dict {
-    
-    public static final int HOME = 1;
     public static final int ENTER = 13;
     public static final int ESC = 27;
     public static final int DELETE = 51;

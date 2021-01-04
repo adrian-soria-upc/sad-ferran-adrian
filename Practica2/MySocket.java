@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+
 public class MySocket {
     private final Socket socket;
     private final BufferedReader output;
@@ -32,9 +33,9 @@ public class MySocket {
             }
     	}
     }
-    private static class Receive implements Runnable {//Lectura del socket
+    private static class Output implements Runnable {//Lectura del socket
         private final MySocket socket;
-        public Receive(final MySocket socket) {
+        public Output(final MySocket socket) {
             this.socket = socket;
         }
         public void run() {
@@ -50,6 +51,6 @@ public class MySocket {
     public static void main(final String args[]) throws IOException {
         final MySocket s = new MySocket(args[0]);     
         new Thread(new Input(s)).start();
-        new Thread(new Receive(s)).start();
+        new Thread(new Output(s)).start();
     }
 }

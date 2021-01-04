@@ -29,31 +29,15 @@ public class EditableBufferedReader extends BufferedReader {
   	while(true){
   		int command = super.read();
   		switch(command){
-  			case 1:
+  			case 72:
   				line.home();
   				System.out.print(line.displayString());
   				break;
-  			case 5:
+  			case 70:
   				line.end();
   				System.out.print(line.displayString());
   				break;
-  			/*AIXO ÉS PROVISIONAL: el problema es que no sóc capaç de llegir
-  			el botó suprimir, simplement s'hauria de canviar el case per el 			suprimir, actualment el suprimir funciona apretant primer el espai
-  			i després el borrar. Per posar un espai s'apreta 2 cops el espai.*/ 
-  			//case 32:
-  			//	switch(super.read()){
-   			//	 case 32:
-   			//	 	line.addChar((char) ' ');
-   			//	 	break;
-  			//	 case 127:
-  			//	 	line.delete();
-  			//		System.out.print(line.displayString());
-  			//		break;
-  			//	 default:
-  			//		break;
-  			//	}
-  			//	break;
-   			case 51://21:
+   			case 51:
   				line.delete();
   				System.out.print(line.displayString());
   				break;
@@ -81,7 +65,6 @@ public class EditableBufferedReader extends BufferedReader {
 				      break;
 				}
 			break;
-			//insertar?
 			default:
 				return command;  	
   		}

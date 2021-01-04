@@ -31,7 +31,6 @@ public class Line {
 
   public void moveCursor(int move){
         //move indica amb +1 o -1 si va a l'esquerra o a la dreta
-        //SEGUR QUE HI HA UNA MILLOR SOLUCIÓ
         if (cursor + move >= 0 && cursor + move <= stringLine.length()){
             cursor += move;
         }
@@ -60,11 +59,6 @@ public class Line {
   }
 
   public String toString() {
-      //StringBuilder builder = new StringBuilder(stringLine.size());
-    	//for(Character ch: stringLine){
-      //  	builder.append(ch);
-    	//}
-    	//return builder.toString();
     return stringLine.toString();
   }
 }

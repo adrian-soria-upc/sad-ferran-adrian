@@ -35,23 +35,7 @@ public class EditableBufferedReader extends BufferedReader {
 			case Dict.END:
 				line.end();
 				break;
-			/*AIXO ÉS PROVISIONAL: el problema es que no sóc capaç de llegir
-			el botó suprimir, simplement s'hauria de canviar el case per el 			suprimir, actualment el suprimir funciona apretant primer el espai
-			i després el borrar. Per posar un espai s'apreta 2 cops el espai.*/ 
-			//case 32:
-			//	switch(super.read()){
-			 //	 case 32:
-			 //	 	line.addChar((char) ' ');
-			 //	 	break;
-			//	 case 127:
-			//	 	line.delete();
-			//		System.out.print(line.displayString());
-			//		break;
-			//	 default:
-			//		break;
-			//	}
-			//	break;
-			 case Dict.DELETE://21:
+			 case Dict.DELETE:
 				line.delete();
 				break;
 			case Dict.BACKSPACE:
